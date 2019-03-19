@@ -50,5 +50,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |		my-controller/my-method	-> my_controller/my_method
 */
 $route['default_controller'] = 'home';
+$route['data_akuisisi'] = 'home/data_akuisisi';
+$route['data_neraca'] = 'home/data_neraca';
+$route['distribusi_excess'] = 'home/distribusi_excess';
+$route['neraca_konsolidasi'] = 'home/neraca_konsolidasi';
 $route['404_override'] = 'home';
 $route['translate_uri_dashes'] = FALSE;

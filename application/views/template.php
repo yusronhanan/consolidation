@@ -90,7 +90,7 @@
     <!-- Sidebar -->
     <ul class="sidebar navbar-nav">
       <li class="nav-item">
-        <a class="nav-link" href="index.html">
+        <a class="nav-link" href="">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Dashboard</span>
         </a>
@@ -102,10 +102,10 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="pagesDropdown">
           <!-- <h6 class="dropdown-header">Login Screens:</h6> -->
-          <a class="dropdown-item" href="login.html">Data Akusisi</a>
-          <a class="dropdown-item" href="register.html">Data Neraca</a>
-          <a class="dropdown-item" href="forgot-password.html">Tabel Distribusi Excess</a>
-          <a class="dropdown-item" href="forgot-password.html">Neraca Konsolidasi</a>
+          <a class="dropdown-item" href="<?php echo base_url() ?>data_akuisisi">Data Akuisisi</a>
+          <a class="dropdown-item" href="<?php echo base_url() ?>data_neraca">Data Neraca</a>
+          <a class="dropdown-item" href="<?php echo base_url() ?>distribusi_excess">Tabel Distribusi Excess</a>
+          <a class="dropdown-item" href="<?php echo base_url() ?>neraca_konsolidasi">Neraca Konsolidasi</a>
           <!-- <div class="dropdown-divider"></div>
           <h6 class="dropdown-header">Other Pages:</h6>
           <a class="dropdown-item" href="404.html">404 Page</a>

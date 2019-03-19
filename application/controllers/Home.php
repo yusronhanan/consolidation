@@ -6,28 +6,35 @@ class Home extends CI_Controller {
 	public function index()
 	{
 		$data = [
-			'main_view'=>'distribusiexcess'
+			'main_view'=>'neracakonsolidasi'
 		];
 		$this->load->view('template', $data);
 	}
-	public function dataakusisi()
+	public function data_akuisisi()
 	{
 		$data = [
-			'main_view'=>'dataakusisi'
+			'main_view'=>'dataakuisisi'
 		];
 		$this->load->view('template', $data);
 	}
-	public function dataneraca()
+	public function data_neraca()
 	{
 		$data = [
 			'main_view'=>'dataneraca'
 		];
 		$this->load->view('template', $data);
 	}
-	public function distribusiexcess()
+	public function distribusi_excess()
 	{
 		$data = [
 			'main_view'=>'distribusiexcess'
+		];
+		$this->load->view('template', $data);
+	}
+	public function neraca_konsolidasi()
+	{
+		$data = [
+			'main_view'=>'neracakonsolidasi'
 		];
 		$this->load->view('template', $data);
 	}
