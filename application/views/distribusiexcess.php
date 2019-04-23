@@ -238,9 +238,7 @@
              ?>
 </div>
         </div>
-        <p class="small text-center text-muted my-5">
-          <em>By : Reissa</em>
-        </p>
+       
 
       </div>
       <!-- /.container-fluid -->

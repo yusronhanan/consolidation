@@ -561,9 +561,7 @@ echo 'Total Aset dan Total Hutang & Ekuitas dari '.$d_ak->pt_induk.' dan '.$d_ak
             <!-- Catatan: Jika nilai aset dengan nilai hutang dan ekutas berdasarkan nilai buku tidak sama, maka akan ada peringatan -->
 </div>
         </div>
-        <p class="small text-center text-muted my-5">
-          <em>By : Reissa</em>
-        </p>
+        
 
       </div>
       <!-- /.container-fluid -->
