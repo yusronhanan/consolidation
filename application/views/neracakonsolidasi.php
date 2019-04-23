@@ -10,7 +10,326 @@
           <li class="breadcrumb-item active">Tables</li>
         </ol>
         
-        
+        <div class="card mb-3">
+          <div class="card-header">
+            <i class="fas fa-table"></i>
+            Data Jurnal Eliminasi</div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table table-bordered" width="100%" cellspacing="0">
+                <thead>
+                  <tr>
+                    <th>Jurnal Eliminasi</th>
+                    <th>Debet</th>
+                    <th>Kredit</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <?php 
+                  $tot_d = 0.0;
+                  $tot_k = 0.0;
+
+                   ?>
+                  <tr>
+                    <td>Saham</td>
+                    <td><?php
+                    $kolom1 = $nb_anak->saham_n1;
+                    echo $kolom1;
+                    $tot_d += $kolom1;
+                     ?></td>
+                     <td></td>
+                  </tr>
+                  <tr>
+                    <td>Agio Saham</td>
+                    <td><?php
+                    $kolom1 = $nb_anak->agio_saham_n1;
+                    echo $kolom1;
+                    $tot_d += $kolom1;
+                     ?></td>
+                     <td></td>
+                  </tr>
+                  <tr>
+                    <td>Laba Ditahan</td>
+                    <td><?php
+                    $kolom1 = $nb_anak->laba_ditahan_n1;
+                    echo $kolom1;
+                    $tot_d += $kolom1;
+                     ?></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>Excess</td>
+                    <?php if(!empty($d_ak->lembar_saham) && !empty($d_ak->nilai_par) && !empty($d_ak->nilai_pasar) && !empty($d_ak->kas_metode) && !empty($d_ak->persen_akuisisi) && !empty($nb_anak->saham_n1) && !empty($nb_anak->agio_saham_n1) && !empty($nb_anak->laba_ditahan_n1)){ 
+                    
+                      $excess = (($d_ak->kas_metode+($d_ak->lembar_saham * $d_ak->nilai_par)+($d_ak->lembar_saham * ($d_ak->nilai_pasar - $d_ak->nilai_par))) /  $d_ak->persen_akuisisi * 100) - ($nb_anak->saham_n1 + $nb_anak->agio_saham_n1 + $nb_anak->laba_ditahan_n1);
+                      if($excess > 0){
+                        echo '<td>'.$excess.'</td> <td></td>';
+                        $tot_d += $excess;
+                      } else{
+                        echo ' <td></td><td>'.$excess.'</td>';
+                        $tot_k += $excess;
+                      }
+                    } ?>
+                    
+                  </tr>
+                  <tr>
+                    <td>Investasi pada Anak</td>
+                    <td></td>
+                    <td><?php  if(!empty($d_ak->lembar_saham) && !empty($d_ak->nilai_par) && !empty($d_ak->nilai_pasar) && !empty($d_ak->kas_metode)){ echo $d_ak->kas_metode+($d_ak->lembar_saham * $d_ak->nilai_par)+($d_ak->lembar_saham * ($d_ak->nilai_pasar - $d_ak->nilai_par));
+
+                    $tot_k += $d_ak->kas_metode+($d_ak->lembar_saham * $d_ak->nilai_par)+($d_ak->lembar_saham * ($d_ak->nilai_pasar - $d_ak->nilai_par));
+                    } ?></td>
+                  </tr>
+                  <tr>
+                    <td>Non Controlling Interest</td>
+                    <td></td>
+                    <td><?php
+                       if(!empty($d_ak->lembar_saham) && !empty($d_ak->nilai_par) && !empty($d_ak->nilai_pasar) && !empty($d_ak->kas_metode) && !empty($d_ak->persen_akuisisi)){
+                      
+                      $kolom2 = (($d_ak->kas_metode+($d_ak->lembar_saham * $d_ak->nilai_par)+($d_ak->lembar_saham * ($d_ak->nilai_pasar - $d_ak->nilai_par))) /  $d_ak->persen_akuisisi * 100) * (100 - $d_ak->persen_akuisisi) / 100;
+                      
+                      $tot_k += $kolom2;
+                      echo $kolom2;
+                      }
+                       ?></td>
+                  </tr>
+                  <tr>
+                    <td>Piutang - net</td>
+                    <?php if(!empty($np_anak->piutang_n1) && !empty($nb_anak->piutang_n1)){ 
+                      $kurang = $np_anak->piutang_n1 - $nb_anak->piutang_n1;
+                      if($kurang < 0){
+                        echo '<td>0</td><td>'.(-1*$kurang).'</td>';
+                        $kolom1 = 0.0;
+                        $kolom2 = $kurang;
+                      $tot_k += -1*$kolom2;
+
+                        
+                      } else{
+                        echo '<td>'.$kurang.'</td><td>0</td>';
+                        $kolom1 = $kurang;
+                        $kolom2 = 0.0;
+                      
+                      $tot_d += $kolom1;
+                      }
+                      
+                    } ?>
+                  </tr>
+                  <tr>
+                    <td>Persediaan</td>
+                    
+                    <?php if(!empty($np_anak->persediaan_n1) && !empty($nb_anak->persediaan_n1)){ 
+                      $kurang = $np_anak->persediaan_n1 - $nb_anak->persediaan_n1;
+                      if($kurang < 0){
+                        echo '<td>0</td><td>'.(-1*$kurang).'</td>';
+                        $kolom1 = 0.0;
+                        $kolom2 = $kurang;
+                       
+                      $tot_k+= -1*$kolom2; 
+                      } else{
+                        echo '<td>'.$kurang.'</td><td>0</td>';
+                        $kolom1 = $kurang;
+                        $kolom2 = 0.0;
+                      $tot_d += $kolom1;
+
+                      }
+                      
+                    } ?>
+                  </tr>
+                  <tr>
+                    <td>Perlengkapan - net</td>
+                    
+                    <?php if(!empty($np_anak->perlengkapan_n1) && !empty($nb_anak->perlengkapan_n1)){ 
+                      $kurang = $np_anak->perlengkapan_n1 - $nb_anak->perlengkapan_n1;
+                      if($kurang < 0){
+                        echo '<td>0</td><td>'.(-1*$kurang).'</td>';
+                        $kolom1 = 0.0;
+                        $kolom2 = $kurang;
+                       
+                      $tot_k+=-1*$kolom2;
+                      } else{
+                        echo '<td>'.$kurang.'</td><td>0</td>';
+                        $kolom1 = $kurang;
+                        $kolom2 = 0.0;
+                      $tot_d += $kolom1; 
+                      }
+                      
+                    } ?>
+                  </tr><tr>
+                    <td>Bangunan - net</td>
+                    
+                    <?php if(!empty($np_anak->bangunan_n1) && !empty($nb_anak->bangunan_n1)){ 
+                      $kurang = $np_anak->bangunan_n1 - $nb_anak->bangunan_n1;
+                      if($kurang < 0){
+                        echo '<td>0</td><td>'.(-1*$kurang).'</td>';
+                        $kolom1 = 0.0;
+                        $kolom2 = $kurang;
+                       
+                      $tot_k += -1* $kolom2;
+
+                      } else{
+                        echo '<td>'.$kurang.'</td><td>0</td>';
+                        $kolom1 = $kurang;
+                        $kolom2 = 0.0;
+
+                      $tot_d += $kolom1;
+
+                      }
+                      
+                    } ?>
+                  </tr><tr>
+                    <td>Tanah</td>
+                    
+                    <?php if(!empty($np_anak->tanah_n1) && !empty($nb_anak->tanah_n1)){ 
+                      $kurang = $np_anak->tanah_n1 - $nb_anak->tanah_n1;
+                      if($kurang < 0){
+                        echo '<td>0</td><td>'.(-1*$kurang).'</td>';
+                        $kolom1 = 0.0;
+                        $kolom2 = $kurang;
+                      $tot_k += -1* $kolom2;
+                                               
+                      } else{
+                        echo '<td>'.$kurang.'</td><td>0</td>';
+                        $kolom1 = $kurang;
+                        $kolom2 = 0.0;
+                        $tot_d += $kolom1;
+                      }
+
+                      
+                    } ?>
+                  </tr><tr>
+                      <?php 
+            $total_pengurangan = (($np_anak->piutang_n1 - $nb_anak->piutang_n1)+($np_anak->persediaan_n1 - $nb_anak->persediaan_n1) + ($np_anak->perlengkapan_n1 - $nb_anak->perlengkapan_n1) + ($np_anak->bangunan_n1 - $nb_anak->bangunan_n1) + ($np_anak->tanah_n1 - $nb_anak->tanah_n1) - ($np_anak->hutang_dagang_n1 - $nb_anak->hutang_dagang_n1) - ($np_anak->hutang_obligasi_n1 - $nb_anak->hutang_obligasi_n1));
+
+            $conclusion = ((($d_ak->kas_metode+($d_ak->lembar_saham * $d_ak->nilai_par)+($d_ak->lembar_saham * ($d_ak->nilai_pasar - $d_ak->nilai_par))) /  $d_ak->persen_akuisisi * 100) - ($nb_anak->saham_n1 + $nb_anak->agio_saham_n1 + $nb_anak->laba_ditahan_n1)) - $total_pengurangan;
+            
+          if($conclusion > 0){
+            echo '<td>Goodwill</td> <td>'.$conclusion.'</td> <td> </td>'; 
+            $tot_d += $conclusion;
+          } else{
+            echo '<td>Gain From Bargain Purchase</td><td> </td><td>'.$conclusion.'</td> ';
+            $tot_k += $conclusion;
+            
+          }
+             ?>
+                  </tr>
+                 <tr>
+                    <td>Excess</td>
+                    <?php if(!empty($d_ak->lembar_saham) && !empty($d_ak->nilai_par) && !empty($d_ak->nilai_pasar) && !empty($d_ak->kas_metode) && !empty($d_ak->persen_akuisisi) && !empty($nb_anak->saham_n1) && !empty($nb_anak->agio_saham_n1) && !empty($nb_anak->laba_ditahan_n1)){ 
+                    
+                      $excess = (($d_ak->kas_metode+($d_ak->lembar_saham * $d_ak->nilai_par)+($d_ak->lembar_saham * ($d_ak->nilai_pasar - $d_ak->nilai_par))) /  $d_ak->persen_akuisisi * 100) - ($nb_anak->saham_n1 + $nb_anak->agio_saham_n1 + $nb_anak->laba_ditahan_n1);
+                      if($excess < 0){
+                        echo '<td>'.$excess.'</td> <td></td>';
+                        $tot_d += $excess;
+                      } else{
+                        echo ' <td></td><td>'.$excess.'</td>';
+                        $tot_k += $excess;
+
+                      }
+                    } ?>
+                  </tr>
+                  <tr>
+                    <td>Hutang Dagang</td>
+
+                    <?php if(!empty($np_anak->hutang_dagang_n1) && !empty($nb_anak->hutang_dagang_n1)){ 
+                      $kurang = $np_anak->hutang_dagang_n1 - $nb_anak->hutang_dagang_n1;
+                      if($kurang < 0){
+                        echo '<td>'.(-1*$kurang).'</td><td></td>';
+                        $kolom1 = 0.0;
+                        $kolom2 = $kurang;
+                        
+                      $tot_d += -1 * $kolom2;
+                      $tot_k += $kolom1;
+                      } else{
+                        echo '<td></td><td>'.$kurang.'</td>';
+                        $kolom1 = $kurang;
+                        $kolom2 = 0.0;
+                    $tot_d +=  $kolom2;
+                      $tot_k += $kolom1;                  
+                      }
+                      
+                    } ?>
+                  </tr>
+                  <tr>
+                    <td>Hutang Obligasi</td>
+
+                    <?php if(!empty($np_anak->hutang_obligasi_n1) && !empty($nb_anak->hutang_obligasi_n1)){ 
+                      $kurang = $np_anak->hutang_obligasi_n1 - $nb_anak->hutang_obligasi_n1;
+                      if($kurang < 0){
+                        echo '<td>'.(-1*$kurang).'</td><td></td>';
+                        $kolom1 = 0.0;
+                        $kolom2 = $kurang;
+                    $tot_d +=  -1 * $kolom2;
+                      $tot_k += $kolom1;                  
+
+                      } else{
+                        echo '<td></td><td>'.$kurang.'</td>';
+                        $kolom1 = $kurang;
+                        $kolom2 = 0.0;
+
+                    $tot_d +=  $kolom2;
+                      $tot_k += $kolom1;                  
+
+                      }
+                  
+                      
+                    } ?>
+                  </tr>
+                  <tr>
+                    <td>Total</td>
+                    <td><?php echo $tot_d ?></td>
+                    <td><?php echo $tot_k ?></td>
+                  
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+            <div class="card mb-3">
+          <div class="card-header">
+            <i class="fas fa-table"></i>
+            Data Jurnal Biaya</div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table table-bordered" width="100%" cellspacing="0">
+                
+                <tbody>
+                  <tr>                  
+                    <td>Beban Investasi</td>
+                    <td><?php if(!empty($d_ak->beban_invest)){ 
+                    if($d_ak->beban_invest > 0){
+                      echo $d_ak->beban_invest;
+                    } else{
+                      echo '0';
+                    }
+                    } ?></td>
+                  </tr>
+                  <tr>                  
+                    <td>Agio Saham</td>
+                    <td><?php if(!empty($d_ak->agio_saham)){ 
+                    if($d_ak->agio_saham > 0){
+                      echo $d_ak->agio_saham;
+                    } else{
+                      echo '0';
+                    }
+                    } ?></td>
+                  </tr>
+                  <tr>                  
+                    <td>Kas</td>
+                    <td><?php if(!empty($d_ak->beban_invest) && !empty($d_ak->agio_saham)){ 
+                    if($d_ak->beban_invest > 0 && $d_ak->agio_saham > 0){
+                      echo $d_ak->beban_invest + $d_ak->agio_saham;
+                    } else{
+                      echo '0';
+                    }
+                    } ?></td>
+                  </tr>
+
+
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
         <!-- DataTables Example -->
         <div class="card mb-3">
           <div class="card-header">
