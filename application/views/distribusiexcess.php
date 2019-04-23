@@ -51,11 +51,10 @@
                       $kurang = $np_anak->piutang_n1 - $nb_anak->piutang_n1;
                       if($kurang < 0){
                         echo '<td style="color:red">'.(-1*$kurang).'</td>';
-                        $total_pengurangan += 1*$kurang;
                       } else{
                         echo '<td>'.$kurang.'</td>';
-                        $total_pengurangan += 1*$kurang;
                       }
+                        $total_pengurangan += $kurang;
                       
                     } ?>
                     <td>
@@ -76,11 +75,11 @@
                       $kurang = $np_anak->persediaan_n1 - $nb_anak->persediaan_n1;
                       if($kurang < 0){
                         echo '<td style="color:red">'.(-1*$kurang).'</td>';
-                        $total_pengurangan += 1*$kurang;
+
                       } else{
                         echo '<td>'.$kurang.'</td>';
-                        $total_pengurangan += $kurang;
                       }
+                      $total_pengurangan += $kurang;
                       
                     } ?>
                     <td>
@@ -99,13 +98,14 @@
                     <td><?php if(!empty($np_anak->perlengkapan_n1)){ echo $np_anak->perlengkapan_n1;} ?></td>
                     <?php if(!empty($np_anak->perlengkapan_n1) && !empty($nb_anak->perlengkapan_n1)){ 
                       $kurang = $np_anak->perlengkapan_n1 - $nb_anak->perlengkapan_n1;
+
                       if($kurang < 0){
                         echo '<td style="color:red">'.(-1*$kurang).'</td>';
-                        $total_pengurangan += 1*$kurang;
+
                       } else{
                         echo '<td>'.$kurang.'</td>';
-                        $total_pengurangan += $kurang;
                       }
+                      $total_pengurangan += $kurang;
                       
                     } ?>
                     <td>
@@ -124,13 +124,14 @@
                     <td><?php if(!empty($np_anak->bangunan_n1)){ echo $np_anak->bangunan_n1;} ?></td>
                     <?php if(!empty($np_anak->bangunan_n1) && !empty($nb_anak->bangunan_n1)){ 
                       $kurang = $np_anak->bangunan_n1 - $nb_anak->bangunan_n1;
+
                       if($kurang < 0){
                         echo '<td style="color:red">'.(-1*$kurang).'</td>';
-                        $total_pengurangan += 1*$kurang;
+
                       } else{
                         echo '<td>'.$kurang.'</td>';
-                        $total_pengurangan += $kurang;
                       }
+                      $total_pengurangan += $kurang;
                       
                     } ?>
                     <td>
@@ -149,14 +150,14 @@
                     <td><?php if(!empty($np_anak->tanah_n1)){ echo $np_anak->tanah_n1;} ?></td>
                     <?php if(!empty($np_anak->tanah_n1) && !empty($nb_anak->tanah_n1)){ 
                       $kurang = $np_anak->tanah_n1 - $nb_anak->tanah_n1;
+
                       if($kurang < 0){
                         echo '<td style="color:red">'.(-1*$kurang).'</td>';
-                        $total_pengurangan += 1*$kurang;
+
                       } else{
                         echo '<td>'.$kurang.'</td>';
-                        $total_pengurangan += $kurang;
                       }
-                      
+                      $total_pengurangan += $kurang;                      
                     } ?>
                     <td>
                       <?php if(!empty($np_anak->tanah_n1) && !empty($nb_anak->tanah_n1)){
@@ -176,11 +177,11 @@
                       $kurang = $np_anak->hutang_dagang_n1 - $nb_anak->hutang_dagang_n1;
                       if($kurang < 0){
                         echo '<td style="color:red">'.(-1*$kurang).'</td>';
-                        $total_pengurangan += 1*$kurang;
+                        
                       } else{
                         echo '<td>'.$kurang.'</td>';
-                        $total_pengurangan -= $kurang;
                       }
+                      $total_pengurangan -= $kurang;
                       
                     } ?>
                     <td>
@@ -201,11 +202,12 @@
                       $kurang = $np_anak->hutang_obligasi_n1 - $nb_anak->hutang_obligasi_n1;
                       if($kurang < 0){
                         echo '<td style="color:red">'.(-1*$kurang).'</td>';
-                        $total_pengurangan += 1*$kurang;
+                        
                       } else{
                         echo '<td>'.$kurang.'</td>';
-                        $total_pengurangan -= $kurang;
+                        
                       }
+                      $total_pengurangan -= $kurang;
                       
                     } ?>
                     <td>

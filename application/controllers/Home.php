@@ -53,7 +53,16 @@ public function __construct()
 	}
 	public function neraca_konsolidasi()
 	{
+		$id = $this->session->userdata('id_akuisisi');
+
 		$data = [
+			'd_ak' => $this->Show_model->GetData(array('id_akuisisi' => $id),'akuisisi'),
+			'nb_induk' => $this->Show_model->GetData(array('id_akuisisi' => $id,'tipe_pt' => 'pt_induk','tipe_nilai'=>'nilai_buku'),'neraca1'),
+			'np_induk' => $this->Show_model->GetData(array('id_akuisisi' => $id,'tipe_pt' => 'pt_induk','tipe_nilai'=>'nilai_pasar'),'neraca1'),
+
+			'nb_anak' => $this->Show_model->GetData(array('id_akuisisi' => $id,'tipe_pt' => 'pt_anak','tipe_nilai'=>'nilai_buku'),'neraca1'),
+			'np_anak' => $this->Show_model->GetData(array('id_akuisisi' => $id,'tipe_pt' => 'pt_anak','tipe_nilai'=>'nilai_pasar'),'neraca1'),
+
 			'main_view'=>'neracakonsolidasi'
 		];
 		$this->load->view('template', $data);
