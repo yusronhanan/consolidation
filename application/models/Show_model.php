@@ -24,9 +24,11 @@ class Show_model extends CI_Model {
   //           ->result();
             
   //   }
+  
+  //akuisisi
 
     public function editAkuisisi1(){
-      $id = $this->GetData('','akuisisi')->id_akuisisi;
+      $id = $this->session->userdata('id_akuisisi');
       $data=array(
             
             'pt_induk' => $this->input->post('pt_induk'),
@@ -45,7 +47,8 @@ class Show_model extends CI_Model {
         }
     }
     public function editAkuisisi2(){
-      $id = $this->GetData('','akuisisi')->id_akuisisi;
+      $id = $this->session->userdata('id_akuisisi');
+
       $data=array(
             
             'kas_metode' => $this->input->post('kas_metode'),
@@ -65,7 +68,8 @@ class Show_model extends CI_Model {
         }
     }
     public function editAkuisisi3(){
-      $id = $this->GetData('','akuisisi')->id_akuisisi;
+      $id = $this->session->userdata('id_akuisisi');
+      
       $data=array(
             
             'beban_invest' => $this->input->post('beban_invest'),
@@ -82,6 +86,57 @@ class Show_model extends CI_Model {
             return false;
         }
     }
+  
+  //neraca function
+
+    public function editNeraca(){
+      $id = $this->input->post('id_neraca1');
+      if($this->input->post('tipe_nilai') == "nilai_buku"){
+      $data=array(
+            
+            'kas_n1' => $this->input->post('kas_n1'),
+            'piutang_n1' => $this->input->post('piutang_n1'),
+            'persediaan_n1' => $this->input->post('persediaan_n1'),
+            'perlengkapan_n1' => $this->input->post('perlengkapan_n1'),
+            'bangunan_n1' => $this->input->post('bangunan_n1'),
+            'tanah_n1' => $this->input->post('tanah_n1'),
+            'hutang_dagang_n1' => $this->input->post('hutang_dagang_n1'),
+            'hutang_obligasi_n1' => $this->input->post('hutang_obligasi_n1'),
+            
+            'saham_n1' => $this->input->post('saham_n1'),
+            'agio_saham_n1' => $this->input->post('agio_saham_n1'),
+            'laba_ditahan_n1' => $this->input->post('laba_ditahan_n1'),
+
+            
+            //'' => $this->input->post(''),
+            );
+        
+    } else{
+      $data=array(
+            
+            'piutang_n1' => $this->input->post('piutang_n1'),
+            'persediaan_n1' => $this->input->post('persediaan_n1'),
+            'perlengkapan_n1' => $this->input->post('perlengkapan_n1'),
+            'bangunan_n1' => $this->input->post('bangunan_n1'),
+            'tanah_n1' => $this->input->post('tanah_n1'),
+            'hutang_dagang_n1' => $this->input->post('hutang_dagang_n1'),
+            'hutang_obligasi_n1' => $this->input->post('hutang_obligasi_n1'),
+            //'' => $this->input->post(''),
+            );
+      
+    }
+      $this->db->where('id_neraca1',$id)
+                 ->update('neraca1', $data);
+
+        if ($this->db->affected_rows() > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    
+
+
     public function GetData($where, $table)
     {
       if($where == ''){
@@ -89,6 +144,12 @@ class Show_model extends CI_Model {
       } else{
       return $this->db->where($where)->get($table)->row();        
       }
+    }
+    public function setIDAkuisisi(){
+        $data = [
+                'id_akuisisi'     => $this->GetData('','akuisisi')->id_akuisisi,
+        ];
+            $this->session->set_userdata( $data );
     }
     // public function GetMAXprice()
     // {

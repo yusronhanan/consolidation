@@ -85,7 +85,7 @@
             Metode Akuisisi</div>
           <div class="card-body">
             <div class="table-responsive">
-              <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+              <table class="table table-bordered" width="100%" cellspacing="0">
                 <thead>
                   <tr>
                     <th>Kas (Rp)</th>
@@ -95,15 +95,7 @@
                     
                   </tr>
                 </thead>
-                <tfoot>
-                  <tr>
-                    <th>Kas (Rp)</th>
-                    <th>Lembar Saham</th>
-                    <th>Nilai Par/Lembar (Rp)</th>
-                    <th>Nilai Pasar/Lembar (Rp)</th>
-                    
-                  </tr>
-                </tfoot>
+                
                 <tbody>
                   <tr>
                     <td><?php if(!empty($d_ak->kas_metode)){ echo $d_ak->kas_metode;} ?></td>
