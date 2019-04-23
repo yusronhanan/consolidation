@@ -2,17 +2,19 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Home extends CI_Controller {
-
+public function __construct()
+{
+	parent::__construct();
+	$this->load->model('Show_model');
+}
 	public function index()
 	{
-		$data = [
-			'main_view'=>'neracakonsolidasi'
-		];
-		$this->load->view('template', $data);
+		redirect('data_akuisisi');
 	}
 	public function data_akuisisi()
 	{
 		$data = [
+			'd_ak' => $this->Show_model->GetData('','akuisisi'),
 			'main_view'=>'dataakuisisi'
 		];
 		$this->load->view('template', $data);

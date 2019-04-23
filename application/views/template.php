@@ -2,7 +2,6 @@
 <html lang="en">
 
 <head>
-
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -19,10 +18,44 @@
 
   <!-- Custom styles for this template-->
   <link href="<?php echo base_url() ?>assets/css/sb-admin.css" rel="stylesheet">
+<link href="<?php echo base_url() ?>assets/css/sweetalert.css" rel="stylesheet">
+  
+<script src="<?php echo base_url() ?>assets/js/sweetalert-dev.js"></script>
+  <script src="<?php echo base_url() ?>assets/js/sweetalert.min.js"></script>
+<script src="<?php echo base_url() ?>assets/vendor/jquery/jquery.min.js"></script>
 
 </head>
 
 <body id="page-top">
+<?php 
+$type_notif = $this->session->flashdata('type_notif');
+$notif = $this->session->flashdata('notif');
+if (!empty($notif)) {
+  if ($type_notif == 'success') {
+    ?>
+      <script type="text/javascript">
+        swal(
+  'Success!',
+  '<?php echo $notif ?>',
+  'success'
+)
+      </script>
+  <?php
+  }
+  else if($type_notif == 'danger') {
+  ?>
+  <script type="text/javascript">
+    swal({
+  type: 'error',
+  title: 'Oops...',
+  text: '<?php echo $notif ?>',
+  // footer: '<a href>Why do I have this issue?</a>',
+})
+  </script>
+<?php
+}
+} 
+ ?>
 
   <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
 
@@ -169,7 +202,7 @@
   </div>
 
   <!-- Bootstrap core JavaScript-->
-  <script src="<?php echo base_url() ?>assets/vendor/jquery/jquery.min.js"></script>
+
   <script src="<?php echo base_url() ?>assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
   <!-- Core plugin JavaScript-->
