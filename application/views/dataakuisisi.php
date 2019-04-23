@@ -98,10 +98,10 @@
                 
                 <tbody>
                   <tr>
-                    <td><?php if(!empty($d_ak->kas_metode)){ echo $d_ak->kas_metode;} ?></td>
-                    <td><?php if(!empty($d_ak->lembar_saham)){ echo $d_ak->lembar_saham;} ?></td>
-                    <td><?php if(!empty($d_ak->nilai_par)){ echo $d_ak->nilai_par;} ?></td>
-                    <td><?php if(!empty($d_ak->nilai_pasar)){ echo $d_ak->nilai_pasar;} ?></td>
+                    <td><?php if(!empty($d_ak->kas_metode)){ echo number_format($d_ak->kas_metode);} ?></td>
+                    <td><?php if(!empty($d_ak->lembar_saham)){ echo number_format($d_ak->lembar_saham);} ?></td>
+                    <td><?php if(!empty($d_ak->nilai_par)){ echo number_format($d_ak->nilai_par);} ?></td>
+                    <td><?php if(!empty($d_ak->nilai_pasar)){ echo number_format($d_ak->nilai_pasar);} ?></td>
                     
                   </tr>
                 </tbody>
@@ -174,10 +174,10 @@
             <i class="fas fa-table"></i>
             Nilai Akuisisi</div>
           <div class="card-body">
-            <p>Kas : <?php if(!empty($d_ak->kas_metode)){ echo $d_ak->kas_metode;} ?></p> 
-            <p>Saham : <?php if(!empty($d_ak->lembar_saham) && !empty($d_ak->nilai_par)){ echo $d_ak->lembar_saham * $d_ak->nilai_par;} ?></p>
-            <p>Agio Saham : <?php if(!empty($d_ak->lembar_saham) && !empty($d_ak->nilai_par) && !empty($d_ak->nilai_pasar)){ echo $d_ak->lembar_saham * ($d_ak->nilai_pasar - $d_ak->nilai_par);} ?></p>
-            <p>Investasi pada Anak :  <?php if(!empty($d_ak->lembar_saham) && !empty($d_ak->nilai_par) && !empty($d_ak->nilai_pasar) && !empty($d_ak->kas_metode)){ echo $d_ak->kas_metode+($d_ak->lembar_saham * $d_ak->nilai_par)+($d_ak->lembar_saham * ($d_ak->nilai_pasar - $d_ak->nilai_par));} ?></p>
+            <p>Kas : <?php if(!empty($d_ak->kas_metode)){ echo number_format($d_ak->kas_metode);} ?></p> 
+            <p>Saham : <?php if(!empty($d_ak->lembar_saham) && !empty($d_ak->nilai_par)){ echo number_format($d_ak->lembar_saham * $d_ak->nilai_par);} ?></p>
+            <p>Agio Saham : <?php if(!empty($d_ak->lembar_saham) && !empty($d_ak->nilai_par) && !empty($d_ak->nilai_pasar)){ echo number_format($d_ak->lembar_saham * ($d_ak->nilai_pasar - $d_ak->nilai_par));} ?></p>
+            <p>Investasi pada Anak :  <?php if(!empty($d_ak->lembar_saham) && !empty($d_ak->nilai_par) && !empty($d_ak->nilai_pasar) && !empty($d_ak->kas_metode)){ echo number_format($d_ak->kas_metode+($d_ak->lembar_saham * $d_ak->nilai_par)+($d_ak->lembar_saham * ($d_ak->nilai_pasar - $d_ak->nilai_par)));} ?></p>
           </div>
         </div>
 
@@ -187,8 +187,8 @@
             Beban Biaya</div>
           <div class="card-body">
             <p>Biaya Akuisisi yang dibayar Tunai dibebankan ke : </p> 
-            <p>Beban Investasi : <?php if(!empty($d_ak->beban_invest)){ echo $d_ak->beban_invest;} ?></p>
-            <p>Agio Saham : <?php if(!empty($d_ak->agio_saham)){ echo $d_ak->agio_saham;} ?> </p>
+            <p>Beban Investasi : <?php if(!empty($d_ak->beban_invest)){ echo number_format($d_ak->beban_invest);} ?></p>
+            <p>Agio Saham : <?php if(!empty($d_ak->agio_saham)){ echo number_format($d_ak->agio_saham);} ?> </p>
           
             <!-- Trigger the modal with a button -->
   <button type="button" class="btn btn-info btn-xs" data-toggle="modal" data-target="#editAkuisisi3">Edit</button>

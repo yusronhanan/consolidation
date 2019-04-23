@@ -451,93 +451,93 @@ if($nbuku_induk_aset != $nbuku_induk_hutang && $nbuku_anak_aset != $nbuku_anak_h
                 <tbody>
                   <tr>
                     <td>Kas</td>
-                    <td><?php if(!empty($nb_induk->kas_n1)){ echo $nb_induk->kas_n1;} ?></td>
-                    <td><?php if(!empty($nb_induk->kas_n1)){ echo $nb_induk->kas_n1;} ?></td>
-                    <td><?php if(!empty($nb_anak->kas_n1)){ echo $nb_anak->kas_n1;} ?></td>
-                    <td><?php if(!empty($nb_anak->kas_n1)){ echo $nb_anak->kas_n1;} ?></td>
+                    <td><?php if(!empty($nb_induk->kas_n1)){ echo number_format($nb_induk->kas_n1);} ?></td>
+                    <td><?php if(!empty($nb_induk->kas_n1)){ echo number_format($nb_induk->kas_n1);} ?></td>
+                    <td><?php if(!empty($nb_anak->kas_n1)){ echo number_format($nb_anak->kas_n1);} ?></td>
+                    <td><?php if(!empty($nb_anak->kas_n1)){ echo number_format($nb_anak->kas_n1);} ?></td>
                   </tr>
                   <tr>
                     <td>Piutang - net</td>
-                    <td><?php if(!empty($nb_induk->piutang_n1)){ echo $nb_induk->piutang_n1;} ?></td>
-                    <td><?php if(!empty($np_induk->piutang_n1)){ echo $np_induk->piutang_n1;} ?></td>
-                    <td><?php if(!empty($nb_anak->piutang_n1)){ echo $nb_anak->piutang_n1;} ?></td>
-                    <td><?php if(!empty($np_anak->piutang_n1)){ echo $np_anak->piutang_n1;} ?></td>
+                    <td><?php if(!empty($nb_induk->piutang_n1)){ echo number_format($nb_induk->piutang_n1);} ?></td>
+                    <td><?php if(!empty($np_induk->piutang_n1)){ echo number_format($np_induk->piutang_n1);} ?></td>
+                    <td><?php if(!empty($nb_anak->piutang_n1)){ echo number_format($nb_anak->piutang_n1);} ?></td>
+                    <td><?php if(!empty($np_anak->piutang_n1)){ echo number_format($np_anak->piutang_n1);} ?></td>
                   </tr>
                   <tr>
                     <td>Persediaan</td>
-                    <td><?php if(!empty($nb_induk->persediaan_n1)){ echo $nb_induk->persediaan_n1;} ?></td>
-                    <td><?php if(!empty($np_induk->persediaan_n1)){ echo $np_induk->persediaan_n1;} ?></td>
-                    <td><?php if(!empty($nb_anak->persediaan_n1)){ echo $nb_anak->persediaan_n1;} ?></td>
-                    <td><?php if(!empty($np_anak->persediaan_n1)){ echo $np_anak->persediaan_n1;} ?></td>
+                    <td><?php if(!empty($nb_induk->persediaan_n1)){ echo number_format($nb_induk->persediaan_n1);} ?></td>
+                    <td><?php if(!empty($np_induk->persediaan_n1)){ echo number_format($np_induk->persediaan_n1);} ?></td>
+                    <td><?php if(!empty($nb_anak->persediaan_n1)){ echo number_format($nb_anak->persediaan_n1);} ?></td>
+                    <td><?php if(!empty($np_anak->persediaan_n1)){ echo number_format($np_anak->persediaan_n1);} ?></td>
                   </tr>
                   <tr>
                     <td>Perlengkapan - net</td>
-                    <td><?php if(!empty($nb_induk->perlengkapan_n1)){ echo $nb_induk->perlengkapan_n1;} ?></td>
-                    <td><?php if(!empty($np_induk->perlengkapan_n1)){ echo $np_induk->perlengkapan_n1;} ?></td>
-                    <td><?php if(!empty($nb_anak->perlengkapan_n1)){ echo $nb_anak->perlengkapan_n1;} ?></td>
-                    <td><?php if(!empty($np_anak->perlengkapan_n1)){ echo $np_anak->perlengkapan_n1;} ?></td>
+                    <td><?php if(!empty($nb_induk->perlengkapan_n1)){ echo number_format($nb_induk->perlengkapan_n1);} ?></td>
+                    <td><?php if(!empty($np_induk->perlengkapan_n1)){ echo number_format($np_induk->perlengkapan_n1);} ?></td>
+                    <td><?php if(!empty($nb_anak->perlengkapan_n1)){ echo number_format($nb_anak->perlengkapan_n1);} ?></td>
+                    <td><?php if(!empty($np_anak->perlengkapan_n1)){ echo number_format($np_anak->perlengkapan_n1);} ?></td>
                   </tr>
                   <tr>
                     <td>Bangunan - net</td>
-                    <td><?php if(!empty($nb_induk->bangunan_n1)){ echo $nb_induk->bangunan_n1;} ?></td>
-                    <td><?php if(!empty($np_induk->bangunan_n1)){ echo $np_induk->bangunan_n1;} ?></td>
-                    <td><?php if(!empty($nb_anak->bangunan_n1)){ echo $nb_anak->bangunan_n1;} ?></td>
-                    <td><?php if(!empty($np_anak->bangunan_n1)){ echo $np_anak->bangunan_n1;} ?></td>
+                    <td><?php if(!empty($nb_induk->bangunan_n1)){ echo number_format($nb_induk->bangunan_n1);} ?></td>
+                    <td><?php if(!empty($np_induk->bangunan_n1)){ echo number_format($np_induk->bangunan_n1);} ?></td>
+                    <td><?php if(!empty($nb_anak->bangunan_n1)){ echo number_format($nb_anak->bangunan_n1);} ?></td>
+                    <td><?php if(!empty($np_anak->bangunan_n1)){ echo number_format($np_anak->bangunan_n1);} ?></td>
                   </tr>
                   <tr>
                     <td>Tanah - net</td>
-                    <td><?php if(!empty($nb_induk->tanah_n1)){ echo $nb_induk->tanah_n1;} ?></td>
-                    <td><?php if(!empty($np_induk->tanah_n1)){ echo $np_induk->tanah_n1;} ?></td>
-                    <td><?php if(!empty($nb_anak->tanah_n1)){ echo $nb_anak->tanah_n1;} ?></td>
-                    <td><?php if(!empty($np_anak->tanah_n1)){ echo $np_anak->tanah_n1;} ?></td>
+                    <td><?php if(!empty($nb_induk->tanah_n1)){ echo number_format($nb_induk->tanah_n1);} ?></td>
+                    <td><?php if(!empty($np_induk->tanah_n1)){ echo number_format($np_induk->tanah_n1);} ?></td>
+                    <td><?php if(!empty($nb_anak->tanah_n1)){ echo number_format($nb_anak->tanah_n1);} ?></td>
+                    <td><?php if(!empty($np_anak->tanah_n1)){ echo number_format($np_anak->tanah_n1);} ?></td>
                   </tr>
                   <tr style="font-weight: bold;">
                     <td>Total Aset</td>
-                    <td><?php if(!empty($nb_induk->kas_n1) && !empty($nb_induk->piutang_n1) && !empty($nb_induk->persediaan_n1) && !empty($nb_induk->perlengkapan_n1) && !empty($nb_induk->bangunan_n1) && !empty($nb_induk->tanah_n1)){ echo $nb_induk->kas_n1 + $nb_induk->piutang_n1 + $nb_induk->persediaan_n1 + $nb_induk->perlengkapan_n1 + $nb_induk->bangunan_n1 + $nb_induk->tanah_n1;} ?></td>
-                    <td><?php if(!empty($nb_induk->kas_n1) && !empty($np_induk->piutang_n1) && !empty($np_induk->persediaan_n1) && !empty($np_induk->perlengkapan_n1) && !empty($np_induk->bangunan_n1) && !empty($np_induk->tanah_n1)){ echo $nb_induk->kas_n1 + $np_induk->piutang_n1 + $np_induk->persediaan_n1 + $np_induk->perlengkapan_n1 + $np_induk->bangunan_n1 + $np_induk->tanah_n1;} ?></td>
-                    <td><?php if(!empty($nb_anak->kas_n1) && !empty($nb_anak->piutang_n1) && !empty($nb_anak->persediaan_n1) && !empty($nb_anak->perlengkapan_n1) && !empty($nb_anak->bangunan_n1) && !empty($nb_anak->tanah_n1)){ echo $nb_anak->kas_n1 + $nb_anak->piutang_n1 + $nb_anak->persediaan_n1 + $nb_anak->perlengkapan_n1 + $nb_anak->bangunan_n1 + $nb_anak->tanah_n1;} ?></td>
-                    <td><?php if(!empty($nb_anak->kas_n1) && !empty($np_anak->piutang_n1) && !empty($np_anak->persediaan_n1) && !empty($np_anak->perlengkapan_n1) && !empty($np_anak->bangunan_n1) && !empty($np_anak->tanah_n1)){ echo $nb_anak->kas_n1 + $np_anak->piutang_n1 + $np_anak->persediaan_n1 + $np_anak->perlengkapan_n1 + $np_anak->bangunan_n1 + $np_anak->tanah_n1;} ?></td>
+                    <td><?php if(!empty($nb_induk->kas_n1) && !empty($nb_induk->piutang_n1) && !empty($nb_induk->persediaan_n1) && !empty($nb_induk->perlengkapan_n1) && !empty($nb_induk->bangunan_n1) && !empty($nb_induk->tanah_n1)){ echo number_format($nb_induk->kas_n1 + $nb_induk->piutang_n1 + $nb_induk->persediaan_n1 + $nb_induk->perlengkapan_n1 + $nb_induk->bangunan_n1 + $nb_induk->tanah_n1);} ?></td>
+                    <td><?php if(!empty($nb_induk->kas_n1) && !empty($np_induk->piutang_n1) && !empty($np_induk->persediaan_n1) && !empty($np_induk->perlengkapan_n1) && !empty($np_induk->bangunan_n1) && !empty($np_induk->tanah_n1)){ echo number_format($nb_induk->kas_n1 + $np_induk->piutang_n1 + $np_induk->persediaan_n1 + $np_induk->perlengkapan_n1 + $np_induk->bangunan_n1 + $np_induk->tanah_n1);} ?></td>
+                    <td><?php if(!empty($nb_anak->kas_n1) && !empty($nb_anak->piutang_n1) && !empty($nb_anak->persediaan_n1) && !empty($nb_anak->perlengkapan_n1) && !empty($nb_anak->bangunan_n1) && !empty($nb_anak->tanah_n1)){ echo number_format($nb_anak->kas_n1 + $nb_anak->piutang_n1 + $nb_anak->persediaan_n1 + $nb_anak->perlengkapan_n1 + $nb_anak->bangunan_n1 + $nb_anak->tanah_n1);} ?></td>
+                    <td><?php if(!empty($nb_anak->kas_n1) && !empty($np_anak->piutang_n1) && !empty($np_anak->persediaan_n1) && !empty($np_anak->perlengkapan_n1) && !empty($np_anak->bangunan_n1) && !empty($np_anak->tanah_n1)){ echo number_format($nb_anak->kas_n1 + $np_anak->piutang_n1 + $np_anak->persediaan_n1 + $np_anak->perlengkapan_n1 + $np_anak->bangunan_n1 + $np_anak->tanah_n1);} ?></td>
                   </tr>
                   <tr>
                     <td>Hutang Dagang</td>
-                    <td><?php if(!empty($nb_induk->hutang_dagang_n1)){ echo $nb_induk->hutang_dagang_n1;} ?></td>
-                    <td><?php if(!empty($np_induk->hutang_dagang_n1)){ echo $np_induk->hutang_dagang_n1;} ?></td>
-                    <td><?php if(!empty($nb_anak->hutang_dagang_n1)){ echo $nb_anak->hutang_dagang_n1;} ?></td>
-                    <td><?php if(!empty($np_anak->hutang_dagang_n1)){ echo $np_anak->hutang_dagang_n1;} ?></td>
+                    <td><?php if(!empty($nb_induk->hutang_dagang_n1)){ echo number_format($nb_induk->hutang_dagang_n1);} ?></td>
+                    <td><?php if(!empty($np_induk->hutang_dagang_n1)){ echo number_format($np_induk->hutang_dagang_n1);} ?></td>
+                    <td><?php if(!empty($nb_anak->hutang_dagang_n1)){ echo number_format($nb_anak->hutang_dagang_n1);} ?></td>
+                    <td><?php if(!empty($np_anak->hutang_dagang_n1)){ echo number_format($np_anak->hutang_dagang_n1);} ?></td>
                   </tr>
                   <tr>
                     <td>Hutang Obligasi</td>
-                    <td><?php if(!empty($nb_induk->hutang_obligasi_n1)){ echo $nb_induk->hutang_obligasi_n1;} ?></td>
-                    <td><?php if(!empty($np_induk->hutang_obligasi_n1)){ echo $np_induk->hutang_obligasi_n1;} ?></td>
-                    <td><?php if(!empty($nb_anak->hutang_obligasi_n1)){ echo $nb_anak->hutang_obligasi_n1;} ?></td>
-                    <td><?php if(!empty($np_anak->hutang_obligasi_n1)){ echo $np_anak->hutang_obligasi_n1;} ?></td>
+                    <td><?php if(!empty($nb_induk->hutang_obligasi_n1)){ echo number_format($nb_induk->hutang_obligasi_n1);} ?></td>
+                    <td><?php if(!empty($np_induk->hutang_obligasi_n1)){ echo number_format($np_induk->hutang_obligasi_n1);} ?></td>
+                    <td><?php if(!empty($nb_anak->hutang_obligasi_n1)){ echo number_format($nb_anak->hutang_obligasi_n1);} ?></td>
+                    <td><?php if(!empty($np_anak->hutang_obligasi_n1)){ echo number_format($np_anak->hutang_obligasi_n1);} ?></td>
                   </tr>
                   <tr>
                     <td>Saham</td>
-                    <td><?php if(!empty($nb_induk->saham_n1)){ echo $nb_induk->saham_n1;} ?></td>
+                    <td><?php if(!empty($nb_induk->saham_n1)){ echo number_format($nb_induk->saham_n1);} ?></td>
                     <td></td>
-                    <td><?php if(!empty($nb_anak->saham_n1)){ echo $nb_anak->saham_n1;} ?></td>
+                    <td><?php if(!empty($nb_anak->saham_n1)){ echo number_format($nb_anak->saham_n1);} ?></td>
                     <td></td>
                   </tr>
                   <tr>
                     <td>Agio Saham</td>
-                    <td><?php if(!empty($nb_induk->agio_saham_n1)){ echo $nb_induk->agio_saham_n1;} ?></td>
+                    <td><?php if(!empty($nb_induk->agio_saham_n1)){ echo number_format($nb_induk->agio_saham_n1);} ?></td>
                     <td></td>
-                    <td><?php if(!empty($nb_anak->agio_saham_n1)){ echo $nb_anak->agio_saham_n1;} ?></td>
+                    <td><?php if(!empty($nb_anak->agio_saham_n1)){ echo number_format($nb_anak->agio_saham_n1);} ?></td>
                     <td></td>
                   </tr>
                   <tr>
                     <td>Laba Ditahan</td>
-                    <td><?php if(!empty($nb_induk->laba_ditahan_n1)){ echo $nb_induk->laba_ditahan_n1;} ?></td>
+                    <td><?php if(!empty($nb_induk->laba_ditahan_n1)){ echo number_format($nb_induk->laba_ditahan_n1);} ?></td>
                     <td></td>
-                    <td><?php if(!empty($nb_anak->laba_ditahan_n1)){ echo $nb_anak->laba_ditahan_n1;} ?></td>
+                    <td><?php if(!empty($nb_anak->laba_ditahan_n1)){ echo number_format($nb_anak->laba_ditahan_n1);} ?></td>
                     <td></td>
                   </tr>
                   <tr style="font-weight: bold;">
                     <td>Total Hutang dan Ekuitas</td>
-                    <td><?php if(!empty($nb_induk->hutang_dagang_n1) && !empty($nb_induk->hutang_obligasi_n1) && !empty($nb_induk->saham_n1) && !empty($nb_induk->agio_saham_n1) && !empty($nb_induk->laba_ditahan_n1)){ echo $nb_induk->hutang_dagang_n1 + $nb_induk->hutang_obligasi_n1 + $nb_induk->saham_n1 + $nb_induk->agio_saham_n1 + $nb_induk->laba_ditahan_n1;} ?></td>
+                    <td><?php if(!empty($nb_induk->hutang_dagang_n1) && !empty($nb_induk->hutang_obligasi_n1) && !empty($nb_induk->saham_n1) && !empty($nb_induk->agio_saham_n1) && !empty($nb_induk->laba_ditahan_n1)){ echo number_format($nb_induk->hutang_dagang_n1 + $nb_induk->hutang_obligasi_n1 + $nb_induk->saham_n1 + $nb_induk->agio_saham_n1 + $nb_induk->laba_ditahan_n1);} ?></td>
                     <td></td>
-                    <td><?php if(!empty($nb_anak->hutang_dagang_n1) && !empty($nb_anak->hutang_obligasi_n1) && !empty($nb_anak->saham_n1) && !empty($nb_anak->agio_saham_n1) && !empty($nb_anak->laba_ditahan_n1)){ echo $nb_anak->hutang_dagang_n1 + $nb_anak->hutang_obligasi_n1 + $nb_anak->saham_n1 + $nb_anak->agio_saham_n1 + $nb_anak->laba_ditahan_n1;} ?></td>
+                    <td><?php if(!empty($nb_anak->hutang_dagang_n1) && !empty($nb_anak->hutang_obligasi_n1) && !empty($nb_anak->saham_n1) && !empty($nb_anak->agio_saham_n1) && !empty($nb_anak->laba_ditahan_n1)){ echo number_format($nb_anak->hutang_dagang_n1 + $nb_anak->hutang_obligasi_n1 + $nb_anak->saham_n1 + $nb_anak->agio_saham_n1 + $nb_anak->laba_ditahan_n1);} ?></td>
                     <td></td>
                   </tr>
 
