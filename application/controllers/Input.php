@@ -100,9 +100,10 @@ class Input extends CI_Controller {
                $this->form_validation->set_rules('perlengkapan_n1', 'Perlengkapan Akuisisi', 'required');
                $this->form_validation->set_rules('bangunan_n1', 'Bangunan', 'required');
                $this->form_validation->set_rules('tanah_n1', 'Tanah', 'required');
+
                $this->form_validation->set_rules('hutang_dagang_n1', 'Hutang Dagang', 'required');
                $this->form_validation->set_rules('hutang_obligasi_n1', 'Hutang Obligasi', 'required');
-               
+               $isEqual = TRUE;
             if($this->input->post('tipe_nilai') == "nilai_buku"){
 				$this->form_validation->set_rules('kas_n1', 'Kas', 'required');
 
@@ -110,8 +111,14 @@ class Input extends CI_Controller {
                $this->form_validation->set_rules('saham_n1', 'Saham', 'required');
                $this->form_validation->set_rules('agio_saham_n1', 'Agio Saham', 'required');
                $this->form_validation->set_rules('laba_ditahan_n1', 'Laba Ditahan', 'required');
+
+               
+               $total_aset = $this->input->post('piutang_n1') + $this->input->post('kas_n1')+ $this->input->post('persediaan_n1')+ $this->input->post('perlengkapan_n1')+ $this->input->post('bangunan_n1')+ $this->input->post('tanah_n1');
+               $total_hutang_ekuitas =+ $this->input->post('hutang_dagang_n1')+ $this->input->post('hutang_obligasi_n1')+ $this->input->post('saham_n1')+ $this->input->post('agio_saham_n1')+ $this->input->post('laba_ditahan_n1');
+            	$isEqual = $total_aset == $total_hutang_ekuitas;
             }
                 if ($this->form_validation->run() == TRUE ) {
+                	if($isEqual){
                     if ($this->Show_model->editNeraca() == TRUE) {
                         $this->session->set_flashdata('type_notif', 'success');
                         $this->session->set_flashdata('notif', 'Anda berhasil mengedit data');
@@ -123,6 +130,12 @@ class Input extends CI_Controller {
                         redirect('data_neraca');
 
                     }
+                	} else{
+						$this->session->set_flashdata('type_notif', 'danger');
+                        $this->session->set_flashdata('notif', 'Maaf, Total Aset dan Total Hutang & Ekuitas tidak sama');
+                        redirect('data_neraca');
+
+                	}
                 } else {
                     $this->session->set_flashdata('type_notif', 'danger');
                 $this->session->set_flashdata('notif', 'Ada inputan kosong / kesalahan inputan');

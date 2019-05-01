@@ -137,8 +137,8 @@ if (!empty($notif)) {
           <!-- <h6 class="dropdown-header">Login Screens:</h6> -->
           <a class="dropdown-item" href="<?php echo base_url() ?>data_akuisisi">Data Akuisisi</a>
           <a class="dropdown-item" href="<?php echo base_url() ?>data_neraca">Data Neraca</a>
-          <a class="dropdown-item" href="<?php echo base_url() ?>distribusi_excess">Tabel Distribusi Excess</a>
-          <a class="dropdown-item" href="<?php echo base_url() ?>neraca_konsolidasi">Neraca Konsolidasi</a>
+          <a class="dropdown-item" href="<?php echo base_url() ?>distribusi_excess">Tabel Distribusi Excess <br> dan Neraca Konsolidasi</a>
+          <!-- <a class="dropdown-item" href="<?php echo base_url() ?>neraca_konsolidasi">Neraca Konsolidasi</a> -->
           <!-- <div class="dropdown-divider"></div>
           <h6 class="dropdown-header">Other Pages:</h6>
           <a class="dropdown-item" href="404.html">404 Page</a>
@@ -163,13 +163,13 @@ if (!empty($notif)) {
      ?>
 
       <!-- Sticky Footer -->
-      <footer class="sticky-footer">
+      <!-- <footer class="sticky-footer">
         <div class="container my-auto">
           <div class="copyright text-center my-auto">
             <span>Copyright © Reissa's Software Consolidation Project 2019</span>
           </div>
         </div>
-      </footer>
+      </footer> -->
 
     </div>
     <!-- /.content-wrapper -->
