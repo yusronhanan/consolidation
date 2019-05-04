@@ -494,9 +494,9 @@ if($nbuku_induk_aset != $nbuku_induk_hutang && $nbuku_anak_aset != $nbuku_anak_h
                   <tr style="font-weight: bold;">
                     <td>Total Aset</td>
                     <td><?php if(!empty($nb_induk->kas_n1) && !empty($nb_induk->piutang_n1) && !empty($nb_induk->persediaan_n1) && !empty($nb_induk->perlengkapan_n1) && !empty($nb_induk->bangunan_n1) && !empty($nb_induk->tanah_n1)){ echo number_format($nb_induk->kas_n1 + $nb_induk->piutang_n1 + $nb_induk->persediaan_n1 + $nb_induk->perlengkapan_n1 + $nb_induk->bangunan_n1 + $nb_induk->tanah_n1);} else{ echo "-";} ?></td>
-                    <td><?php if(!empty($nb_induk->kas_n1) && !empty($np_induk->piutang_n1) && !empty($np_induk->persediaan_n1) && !empty($np_induk->perlengkapan_n1) && !empty($np_induk->bangunan_n1) && !empty($np_induk->tanah_n1)){ echo number_format($nb_induk->kas_n1 + $np_induk->piutang_n1 + $np_induk->persediaan_n1 + $np_induk->perlengkapan_n1 + $np_induk->bangunan_n1 + $np_induk->tanah_n1);} else{ echo "-";} ?></td>
+                    <td>-</td>
                     <td><?php if(!empty($nb_anak->kas_n1) && !empty($nb_anak->piutang_n1) && !empty($nb_anak->persediaan_n1) && !empty($nb_anak->perlengkapan_n1) && !empty($nb_anak->bangunan_n1) && !empty($nb_anak->tanah_n1)){ echo number_format($nb_anak->kas_n1 + $nb_anak->piutang_n1 + $nb_anak->persediaan_n1 + $nb_anak->perlengkapan_n1 + $nb_anak->bangunan_n1 + $nb_anak->tanah_n1);} else{ echo "-";} ?></td>
-                    <td><?php if(!empty($nb_anak->kas_n1) && !empty($np_anak->piutang_n1) && !empty($np_anak->persediaan_n1) && !empty($np_anak->perlengkapan_n1) && !empty($np_anak->bangunan_n1) && !empty($np_anak->tanah_n1)){ echo number_format($nb_anak->kas_n1 + $np_anak->piutang_n1 + $np_anak->persediaan_n1 + $np_anak->perlengkapan_n1 + $np_anak->bangunan_n1 + $np_anak->tanah_n1);} else{ echo "-";} ?></td>
+                    <td>-</td>
                   </tr>
                   <tr>
                     <td>Hutang Dagang</td>

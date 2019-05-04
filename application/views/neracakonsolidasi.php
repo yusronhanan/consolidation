@@ -13,7 +13,7 @@
         <div class="card mb-3">
           <div class="card-header">
             <i class="fas fa-table"></i>
-            Data Jurnal Eliminasi</div>
+            Jurnal Eliminasi</div>
           <div class="card-body">
             <div class="table-responsive">
               <table class="table table-bordered" width="100%" cellspacing="0">
@@ -312,7 +312,7 @@
             <div class="card mb-3">
           <div class="card-header">
             <i class="fas fa-table"></i>
-            Data Jurnal Biaya</div>
+            Jurnal Biaya</div>
           <div class="card-body">
             <div class="table-responsive">
               <table class="table table-bordered" width="100%" cellspacing="0">
@@ -374,7 +374,7 @@
         <div class="card mb-3">
           <div class="card-header">
             <i class="fas fa-table"></i>
-            Data Neraca Konsolidasi</div>
+            Neraca Konsolidasi</div>
           <div class="card-body">
             <div class="table-responsive">
               <table class="table table-bordered" width="100%" cellspacing="0">

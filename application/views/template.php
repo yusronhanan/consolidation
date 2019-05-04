@@ -137,20 +137,25 @@ if (!empty($notif)) {
           <!-- <h6 class="dropdown-header">Login Screens:</h6> -->
           <a class="dropdown-item" href="<?php echo base_url() ?>data_akuisisi">Data Akuisisi</a>
           <a class="dropdown-item" href="<?php echo base_url() ?>data_neraca">Data Neraca</a>
-          <a class="dropdown-item" href="<?php echo base_url() ?>distribusi_excess">Tabel Distribusi Excess <br> dan Neraca Konsolidasi</a>
-          <!-- <a class="dropdown-item" href="<?php echo base_url() ?>neraca_konsolidasi">Neraca Konsolidasi</a> -->
+          <!-- <a class="dropdown-item" ></a> -->
+          <!-- <a class="dropdown-item" >Neraca Konsolidasi</a> -->
           <!-- <div class="dropdown-divider"></div>
           <h6 class="dropdown-header">Other Pages:</h6>
           <a class="dropdown-item" href="404.html">404 Page</a>
           <a class="dropdown-item" href="blank.html">Blank Page</a> -->
         </div>
       </li>
-      <!-- <li class="nav-item">
-        <a class="nav-link" href="charts.html">
-          <i class="fas fa-fw fa-chart-area"></i>
-          <span>Charts</span></a>
+      <li class="nav-item">
+        <a class="nav-link" href="<?php echo base_url() ?>distribusi_excess">
+          <!-- <i class="fas fa-fw fa-chart-area"></i> -->
+          <span>Tabel Distribusi Excess</span></a>
       </li>
-      <li class="nav-item active">
+            <li class="nav-item">
+        <a class="nav-link" href="<?php echo base_url() ?>neraca_konsolidasi">
+          <!-- <i class="fas fa-fw fa-chart-area"></i> -->
+          <span>Jurnal dan Neraca Konsolidasi</span></a>
+      </li>
+      <!-- <li class="nav-item active">
         <a class="nav-link" href="tables.html">
           <i class="fas fa-fw fa-table"></i>
           <span>Tables</span></a>
