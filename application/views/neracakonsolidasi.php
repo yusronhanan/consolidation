@@ -59,9 +59,35 @@
                   </tr>
                   <tr>
                     <td>Excess</td>
-                    <?php if(!empty($d_ak->lembar_saham) && !empty($d_ak->nilai_par) && !empty($d_ak->nilai_pasar) && !empty($d_ak->kas_metode) && !empty($d_ak->persen_akuisisi) && !empty($nb_anak->saham_n1) && !empty($nb_anak->agio_saham_n1) && !empty($nb_anak->laba_ditahan_n1)){ 
-                    
-                      $excess = (($d_ak->kas_metode+($d_ak->lembar_saham * $d_ak->nilai_par)+($d_ak->lembar_saham * ($d_ak->nilai_pasar - $d_ak->nilai_par))) /  $d_ak->persen_akuisisi * 100) - ($nb_anak->saham_n1 + $nb_anak->agio_saham_n1 + $nb_anak->laba_ditahan_n1);
+                    <?php
+                     // if(!empty($d_ak->lembar_saham) && !empty($d_ak->nilai_par) && !empty($d_ak->nilai_pasar) && !empty($d_ak->kas_metode) && !empty($d_ak->persen_akuisisi) && !empty($nb_anak->saham_n1) && !empty($nb_anak->agio_saham_n1) && !empty($nb_anak->laba_ditahan_n1)){ 
+                    $nilai_akuisisi2 = 0;
+              if(!empty($d_ak->kas_metode)){
+                $nilai_akuisisi2 += $d_ak->kas_metode;
+              }
+              if(!empty($d_ak->lembar_saham) && !empty($d_ak->nilai_par)){
+                $nilai_akuisisi2 += ($d_ak->lembar_saham * $d_ak->nilai_par);
+              }
+              if(!empty($d_ak->lembar_saham) && !empty($d_ak->nilai_pasar) && !empty($d_ak->nilai_par)){
+                $nilai_akuisisi2 += ($d_ak->lembar_saham * ($d_ak->nilai_pasar - $d_ak->nilai_par));
+              }
+              if($nilai_akuisisi2 != 0 && !empty($d_ak->persen_akuisisi)){
+                $nilai_akuisisi2 = $nilai_akuisisi2 /  $d_ak->persen_akuisisi * 100;
+              }
+              $nilai_anak = 0;
+
+              if(!empty($nb_anak->saham_n1)){
+              $nilai_anak += $nb_anak->saham_n1;
+              }
+              if(!empty($nb_anak->agio_saham_n1)){
+              $nilai_anak += $nb_anak->agio_saham_n1;
+              }
+              if(!empty($nb_anak->laba_ditahan_n1)){
+              $nilai_anak += $nb_anak->laba_ditahan_n1;
+              }
+              $excess = $nilai_akuisisi2 - $nilai_anak;
+                      // $excess = (($d_ak->kas_metode+($d_ak->lembar_saham * $d_ak->nilai_par)+($d_ak->lembar_saham * ($d_ak->nilai_pasar - $d_ak->nilai_par))) /  $d_ak->persen_akuisisi * 100) - ($nb_anak->saham_n1 + $nb_anak->agio_saham_n1 + $nb_anak->laba_ditahan_n1);
+                      // if($excess == 0){
                       if($excess > 0){
                         echo '<td>'.number_format($excess).'</td> <td>-</td>';
                         $tot_d += $excess;
@@ -69,31 +95,51 @@
                         echo ' <td>-</td><td>'.number_format($excess).'</td>';
                         $tot_k += $excess;
                       }
-                    } else {
-                      echo "-"; 
-                    } ?>
+                      // } else{
+                      // echo "<td>-</td> <td>-</td>"; 
+                        
+                      // }
+
+                    // } else {
+                    //   echo "-"; 
+                    // } ?>
                     
                   </tr>
                   <tr>
                     <td>Investasi pada Anak</td>
                     <td>-</td>
-                    <td><?php  if(!empty($d_ak->lembar_saham) && !empty($d_ak->nilai_par) && !empty($d_ak->nilai_pasar) && !empty($d_ak->kas_metode)){ echo number_format($d_ak->kas_metode+($d_ak->lembar_saham * $d_ak->nilai_par)+($d_ak->lembar_saham * ($d_ak->nilai_pasar - $d_ak->nilai_par)));
+                    <td><?php   
+            $invest_anak = 0;
+            if(!empty($d_ak->kas_metode)){
+              $invest_anak += $d_ak->kas_metode;
+            } 
+            if(!empty($d_ak->lembar_saham) && !empty($d_ak->nilai_par)){ 
+              $invest_anak += ($d_ak->lembar_saham * $d_ak->nilai_par);
+            }
+            if(!empty($d_ak->lembar_saham) && !empty($d_ak->nilai_par) && !empty($d_ak->nilai_pasar)){ 
+              $invest_anak += ($d_ak->lembar_saham * ($d_ak->nilai_pasar - $d_ak->nilai_par));
+            }
 
-                    $tot_k += $d_ak->kas_metode+($d_ak->lembar_saham * $d_ak->nilai_par)+($d_ak->lembar_saham * ($d_ak->nilai_pasar - $d_ak->nilai_par));
-                    } else {
-                      echo "-"; 
-                    }?></td>
+              
+            if($invest_anak != 0){
+              echo number_format($invest_anak);
+            }else{ echo "-";} 
+                    $tot_k += $invest_anak;
+                    
+                    ?></td>
                   </tr>
                   <tr>
                     <td>Non Controlling Interest</td>
                     <td>-</td>
                     <td><?php
-                       if(!empty($d_ak->lembar_saham) && !empty($d_ak->nilai_par) && !empty($d_ak->nilai_pasar) && !empty($d_ak->kas_metode) && !empty($d_ak->persen_akuisisi)){
-                      
+                      $kolom2 = 0;
                       $kolom2 = (($d_ak->kas_metode+($d_ak->lembar_saham * $d_ak->nilai_par)+($d_ak->lembar_saham * ($d_ak->nilai_pasar - $d_ak->nilai_par))) /  $d_ak->persen_akuisisi * 100) * (100 - $d_ak->persen_akuisisi) / 100;
                       
                       $tot_k += $kolom2;
+                      if($kolom2 != 0){
+
                       echo number_format($kolom2);
+
                       } else {
                       echo "-"; 
                     }
@@ -233,9 +279,35 @@
                   </tr>
                  <tr>
                     <td>Excess</td>
-                    <?php if(!empty($d_ak->lembar_saham) && !empty($d_ak->nilai_par) && !empty($d_ak->nilai_pasar) && !empty($d_ak->kas_metode) && !empty($d_ak->persen_akuisisi) && !empty($nb_anak->saham_n1) && !empty($nb_anak->agio_saham_n1) && !empty($nb_anak->laba_ditahan_n1)){ 
+                    <?php 
+                    // if(!empty($d_ak->lembar_saham) && !empty($d_ak->nilai_par) && !empty($d_ak->nilai_pasar) && !empty($d_ak->kas_metode) && !empty($d_ak->persen_akuisisi) && !empty($nb_anak->saham_n1) && !empty($nb_anak->agio_saham_n1) && !empty($nb_anak->laba_ditahan_n1)){ 
                     
-                      $excess = (($d_ak->kas_metode+($d_ak->lembar_saham * $d_ak->nilai_par)+($d_ak->lembar_saham * ($d_ak->nilai_pasar - $d_ak->nilai_par))) /  $d_ak->persen_akuisisi * 100) - ($nb_anak->saham_n1 + $nb_anak->agio_saham_n1 + $nb_anak->laba_ditahan_n1);
+                      $nilai_akuisisi2 = 0;
+              if(!empty($d_ak->kas_metode)){
+                $nilai_akuisisi2 += $d_ak->kas_metode;
+              }
+              if(!empty($d_ak->lembar_saham) && !empty($d_ak->nilai_par)){
+                $nilai_akuisisi2 += ($d_ak->lembar_saham * $d_ak->nilai_par);
+              }
+              if(!empty($d_ak->lembar_saham) && !empty($d_ak->nilai_pasar) && !empty($d_ak->nilai_par)){
+                $nilai_akuisisi2 += ($d_ak->lembar_saham * ($d_ak->nilai_pasar - $d_ak->nilai_par));
+              }
+              if($nilai_akuisisi2 != 0 && !empty($d_ak->persen_akuisisi)){
+                $nilai_akuisisi2 = $nilai_akuisisi2 /  $d_ak->persen_akuisisi * 100;
+              }
+              $nilai_anak = 0;
+
+              if(!empty($nb_anak->saham_n1)){
+              $nilai_anak += $nb_anak->saham_n1;
+              }
+              if(!empty($nb_anak->agio_saham_n1)){
+              $nilai_anak += $nb_anak->agio_saham_n1;
+              }
+              if(!empty($nb_anak->laba_ditahan_n1)){
+              $nilai_anak += $nb_anak->laba_ditahan_n1;
+              }
+              $excess = $nilai_akuisisi2 - $nilai_anak;
+                      // if($excess == 0){
                       if($excess < 0){
                         echo '<td>'.number_format($excess).'</td> <td>-</td>';
                         $tot_d += $excess;
@@ -244,9 +316,14 @@
                         $tot_k += $excess;
 
                       }
-                    } else {
-                      echo "-"; 
-                    } ?>
+                      // } else {
+                      // echo "<td>-</td> <td>-</td>"; 
+                      // }
+
+                    // } else {
+                    //   echo "-"; 
+                    // } 
+                    ?>
                   </tr>
                   <tr>
                     <td>Hutang Dagang</td>
@@ -409,11 +486,11 @@
                     $kolom2 = 0.0;
                     $kolom3 = 0.0;
                     $kolom4 = 0.0;
-                    if(!empty($nb_induk->kas_n1) && !empty($d_ak->kas_metode) && !empty($d_ak->beban_invest) && !empty($d_ak->agio_saham)) {
+                    $kolom1 = 0;
                       $kolom1 = $nb_induk->kas_n1 - $d_ak->kas_metode - $d_ak->beban_invest - $d_ak->agio_saham;
                       echo number_format($kolom1);
                       $tot_induk += $kolom1;
-                    } ?></td>
+                     ?></td>
                     <td><?php if(!empty($nb_anak->kas_n1)){ 
                       $kolom2 = $nb_anak->kas_n1;
                       echo number_format($kolom2);
@@ -592,14 +669,41 @@
                   </tr>
                   <tr>
                     <td>Investasi pada Anak</td>
-                    <td><?php  if(!empty($d_ak->lembar_saham) && !empty($d_ak->nilai_par) && !empty($d_ak->nilai_pasar) && !empty($d_ak->kas_metode)){ echo number_format($d_ak->kas_metode+($d_ak->lembar_saham * $d_ak->nilai_par)+($d_ak->lembar_saham * ($d_ak->nilai_pasar - $d_ak->nilai_par)));
-                      $tot_induk += $d_ak->kas_metode+($d_ak->lembar_saham * $d_ak->nilai_par)+($d_ak->lembar_saham * ($d_ak->nilai_pasar - $d_ak->nilai_par));
-                    } ?></td>
+                    <td><?php
+            $invest_anak = 0;
+            if(!empty($d_ak->kas_metode)){
+              $invest_anak += $d_ak->kas_metode;
+            } 
+            if(!empty($d_ak->lembar_saham) && !empty($d_ak->nilai_par)){ 
+              $invest_anak += ($d_ak->lembar_saham * $d_ak->nilai_par);
+            }
+            if(!empty($d_ak->lembar_saham) && !empty($d_ak->nilai_par) && !empty($d_ak->nilai_pasar)){ 
+              $invest_anak += ($d_ak->lembar_saham * ($d_ak->nilai_pasar - $d_ak->nilai_par));
+            }
+
+              $tot_induk += $invest_anak;
+            if($invest_anak != 0){
+              echo number_format($invest_anak);
+            }else{ echo "-";} 
+                    ?></td>
                     <td>-</td>
                     <td>-</td>
-                    <td><?php  if(!empty($d_ak->lembar_saham) && !empty($d_ak->nilai_par) && !empty($d_ak->nilai_pasar) && !empty($d_ak->kas_metode)){ echo number_format($d_ak->kas_metode+($d_ak->lembar_saham * $d_ak->nilai_par)+($d_ak->lembar_saham * ($d_ak->nilai_pasar - $d_ak->nilai_par)));
-                      $tot_kol4 += $d_ak->kas_metode+($d_ak->lembar_saham * $d_ak->nilai_par)+($d_ak->lembar_saham * ($d_ak->nilai_pasar - $d_ak->nilai_par));
-                    } 
+                    <td><?php 
+                                $invest_anak = 0;
+            if(!empty($d_ak->kas_metode)){
+              $invest_anak += $d_ak->kas_metode;
+            } 
+            if(!empty($d_ak->lembar_saham) && !empty($d_ak->nilai_par)){ 
+              $invest_anak += ($d_ak->lembar_saham * $d_ak->nilai_par);
+            }
+            if(!empty($d_ak->lembar_saham) && !empty($d_ak->nilai_par) && !empty($d_ak->nilai_pasar)){ 
+              $invest_anak += ($d_ak->lembar_saham * ($d_ak->nilai_pasar - $d_ak->nilai_par));
+            }
+
+              $tot_kol4 += $invest_anak;
+            if($invest_anak != 0){
+              echo number_format($invest_anak);
+            }else{ echo "-";}  
 
                     ?></td>
                     <td>-</td>
@@ -611,17 +715,44 @@
                     <td>Excess</td>
                     <td>-</td>
                     <td>-</td>
-                    <td><?php if(!empty($d_ak->lembar_saham) && !empty($d_ak->nilai_par) && !empty($d_ak->nilai_pasar) && !empty($d_ak->kas_metode) && !empty($d_ak->persen_akuisisi) && !empty($nb_anak->saham_n1) && !empty($nb_anak->agio_saham_n1) && !empty($nb_anak->laba_ditahan_n1)){ 
+                    <td><?php 
+                    // if(!empty($d_ak->lembar_saham) && !empty($d_ak->nilai_par) && !empty($d_ak->nilai_pasar) && !empty($d_ak->kas_metode) && !empty($d_ak->persen_akuisisi) && !empty($nb_anak->saham_n1) && !empty($nb_anak->agio_saham_n1) && !empty($nb_anak->laba_ditahan_n1)){ 
                     
-                      $excess = (($d_ak->kas_metode+($d_ak->lembar_saham * $d_ak->nilai_par)+($d_ak->lembar_saham * ($d_ak->nilai_pasar - $d_ak->nilai_par))) /  $d_ak->persen_akuisisi * 100) - ($nb_anak->saham_n1 + $nb_anak->agio_saham_n1 + $nb_anak->laba_ditahan_n1);
+                    //   $excess = (($d_ak->kas_metode+($d_ak->lembar_saham * $d_ak->nilai_par)+($d_ak->lembar_saham * ($d_ak->nilai_pasar - $d_ak->nilai_par))) /  $d_ak->persen_akuisisi * 100) - ($nb_anak->saham_n1 + $nb_anak->agio_saham_n1 + $nb_anak->laba_ditahan_n1);
+
+                    $nilai_akuisisi2 = 0;
+              if(!empty($d_ak->kas_metode)){
+                $nilai_akuisisi2 += $d_ak->kas_metode;
+              }
+              if(!empty($d_ak->lembar_saham) && !empty($d_ak->nilai_par)){
+                $nilai_akuisisi2 += ($d_ak->lembar_saham * $d_ak->nilai_par);
+              }
+              if(!empty($d_ak->lembar_saham) && !empty($d_ak->nilai_pasar) && !empty($d_ak->nilai_par)){
+                $nilai_akuisisi2 += ($d_ak->lembar_saham * ($d_ak->nilai_pasar - $d_ak->nilai_par));
+              }
+              if($nilai_akuisisi2 != 0 && !empty($d_ak->persen_akuisisi)){
+                $nilai_akuisisi2 = $nilai_akuisisi2 /  $d_ak->persen_akuisisi * 100;
+              }
+              $nilai_anak = 0;
+
+              if(!empty($nb_anak->saham_n1)){
+              $nilai_anak += $nb_anak->saham_n1;
+              }
+              if(!empty($nb_anak->agio_saham_n1)){
+              $nilai_anak += $nb_anak->agio_saham_n1;
+              }
+              if(!empty($nb_anak->laba_ditahan_n1)){
+              $nilai_anak += $nb_anak->laba_ditahan_n1;
+              }
+              $excess = $nilai_akuisisi2 - $nilai_anak;
                       if($excess > 0){
                         echo number_format($excess);
                         $tot_kol3 += $excess;
                       } else{
                         echo "-";
                       }
-                    } ?></td>
-                    <td><?php if(!empty($d_ak->lembar_saham) && !empty($d_ak->nilai_par) && !empty($d_ak->nilai_pasar) && !empty($d_ak->kas_metode) && !empty($d_ak->persen_akuisisi) && !empty($nb_anak->saham_n1) && !empty($nb_anak->agio_saham_n1) && !empty($nb_anak->laba_ditahan_n1)){ 
+                     ?></td>
+                    <td><?php 
                     if($excess > 0){
                         echo number_format($excess);
                         $tot_kol4 += $excess;
@@ -629,7 +760,7 @@
                       } else{
                         echo "-";
                       }
-                    } ?></td>
+                    ?></td>
                     <td>-</td>
 
                   </tr>
@@ -842,14 +973,18 @@
                     <td>-</td>
                     <td>-</td>
                       <?php
-                       if(!empty($d_ak->lembar_saham) && !empty($d_ak->nilai_par) && !empty($d_ak->nilai_pasar) && !empty($d_ak->kas_metode) && !empty($d_ak->persen_akuisisi)){
+                      $kolom4 = 0;
+                       
                       $kolom4 = (($d_ak->kas_metode+($d_ak->lembar_saham * $d_ak->nilai_par)+($d_ak->lembar_saham * ($d_ak->nilai_pasar - $d_ak->nilai_par))) /  $d_ak->persen_akuisisi * 100) * (100 - $d_ak->persen_akuisisi) / 100;
+                      if($kolom4 == 0){
+                        echo '<td>-</td><td>-</td>';
+                      } else{
                       echo '<td>'.number_format($kolom4).'</td>';
                       echo '<td>'.number_format($kolom4).'</td>';
-
+                      }
                       $tot_kol4 += $kolom4;
                       $tot_ns2 += $kolom4;
-                      }
+                      
                        ?>                  
                   </tr>
                   <tr style="font-weight: bold">

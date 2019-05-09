@@ -177,7 +177,22 @@
             <p>Kas : <?php if(!empty($d_ak->kas_metode)){ echo number_format($d_ak->kas_metode);}else{ echo "-";} ?></p> 
             <p>Saham : <?php if(!empty($d_ak->lembar_saham) && !empty($d_ak->nilai_par)){ echo number_format($d_ak->lembar_saham * $d_ak->nilai_par);}else{ echo "-";} ?></p>
             <p>Agio Saham : <?php if(!empty($d_ak->lembar_saham) && !empty($d_ak->nilai_par) && !empty($d_ak->nilai_pasar)){ echo number_format($d_ak->lembar_saham * ($d_ak->nilai_pasar - $d_ak->nilai_par));}else{ echo "-";} ?></p>
-            <p>Investasi pada Anak :  <?php if(!empty($d_ak->lembar_saham) && !empty($d_ak->nilai_par) && !empty($d_ak->nilai_pasar) && !empty($d_ak->kas_metode)){ echo number_format($d_ak->kas_metode+($d_ak->lembar_saham * $d_ak->nilai_par)+($d_ak->lembar_saham * ($d_ak->nilai_pasar - $d_ak->nilai_par)));}else{ echo "-";} ?></p>
+            <p>Investasi pada Anak :  <?php 
+            $invest_anak = 0;
+            if(!empty($d_ak->kas_metode)){
+              $invest_anak += $d_ak->kas_metode;
+            } 
+            if(!empty($d_ak->lembar_saham) && !empty($d_ak->nilai_par)){ 
+              $invest_anak += ($d_ak->lembar_saham * $d_ak->nilai_par);
+            }
+            if(!empty($d_ak->lembar_saham) && !empty($d_ak->nilai_par) && !empty($d_ak->nilai_pasar)){ 
+              $invest_anak += ($d_ak->lembar_saham * ($d_ak->nilai_pasar - $d_ak->nilai_par));
+            }
+
+              
+            if($invest_anak != 0){
+              echo number_format($invest_anak);
+            }else{ echo "-";} ?></p>
           </div>
         </div>
 

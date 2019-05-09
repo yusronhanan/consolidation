@@ -135,8 +135,9 @@ if (!empty($notif)) {
         </a>
         <div class="dropdown-menu" aria-labelledby="pagesDropdown">
           <!-- <h6 class="dropdown-header">Login Screens:</h6> -->
-          <a class="dropdown-item" href="<?php echo base_url() ?>data_akuisisi">Data Akuisisi</a>
           <a class="dropdown-item" href="<?php echo base_url() ?>data_neraca">Data Neraca</a>
+
+          <a class="dropdown-item" href="<?php echo base_url() ?>data_akuisisi">Data Akuisisi</a>
           <!-- <a class="dropdown-item" ></a> -->
           <!-- <a class="dropdown-item" >Neraca Konsolidasi</a> -->
           <!-- <div class="dropdown-divider"></div>

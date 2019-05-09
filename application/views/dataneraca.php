@@ -60,7 +60,7 @@ if($nbuku_induk_aset != $nbuku_induk_hutang && $nbuku_anak_aset != $nbuku_anak_h
         <div class="card mb-3">
           <div class="card-header">
             <i class="fas fa-table"></i>
-            Neraca Sesaat Sebelum Konsolidasi</div>
+            Neraca Sesaat Sebelum Akuisisi</div>
           <div class="card-body">
             <div class="table-responsive">
               <table class="table table-bordered"  width="100%" cellspacing="0">

@@ -18,10 +18,67 @@
             <?php 
 
              ?>
-            <p>Nilai Akuisi : <?php if(!empty($d_ak->persen_akuisisi)){ echo $d_ak->persen_akuisisi.'%';} else{ echo "-";} ?>   (Rp.<?php if(!empty($d_ak->lembar_saham) && !empty($d_ak->nilai_par) && !empty($d_ak->nilai_pasar) && !empty($d_ak->kas_metode)){ echo number_format($d_ak->kas_metode+($d_ak->lembar_saham * $d_ak->nilai_par)+($d_ak->lembar_saham * ($d_ak->nilai_pasar - $d_ak->nilai_par)));} else{ echo "-";} ?>)</p> 
-            <p>Nilai Akuisi : 100%   (Rp.<?php if(!empty($d_ak->lembar_saham) && !empty($d_ak->nilai_par) && !empty($d_ak->nilai_pasar) && !empty($d_ak->kas_metode) && !empty($d_ak->persen_akuisisi)){ echo number_format(($d_ak->kas_metode+($d_ak->lembar_saham * $d_ak->nilai_par)+($d_ak->lembar_saham * ($d_ak->nilai_pasar - $d_ak->nilai_par))) /  $d_ak->persen_akuisisi * 100);} else{ echo "-";} ?>)</p>
-            <p>Nilai Buku Anak : 100%   (Rp.<?php if(!empty($nb_anak->saham_n1) && !empty($nb_anak->agio_saham_n1) && !empty($nb_anak->laba_ditahan_n1)) { echo number_format($nb_anak->saham_n1 + $nb_anak->agio_saham_n1 + $nb_anak->laba_ditahan_n1);} else{ echo "-";} ?>)</p>
-            <p>Excess: 100%   (Rp.<?php if(!empty($d_ak->lembar_saham) && !empty($d_ak->nilai_par) && !empty($d_ak->nilai_pasar) && !empty($d_ak->kas_metode) && !empty($d_ak->persen_akuisisi) && !empty($nb_anak->saham_n1) && !empty($nb_anak->agio_saham_n1) && !empty($nb_anak->laba_ditahan_n1)){ echo number_format((($d_ak->kas_metode+($d_ak->lembar_saham * $d_ak->nilai_par)+($d_ak->lembar_saham * ($d_ak->nilai_pasar - $d_ak->nilai_par))) /  $d_ak->persen_akuisisi * 100) - ($nb_anak->saham_n1 + $nb_anak->agio_saham_n1 + $nb_anak->laba_ditahan_n1));} else{ echo "-";} ?>)</p>
+            <p>Nilai Akuisi : <?php if(!empty($d_ak->persen_akuisisi)){ echo $d_ak->persen_akuisisi.'%';} else{ echo "-";} ?>   (Rp.<?php 
+              $nilai_akuisisi = 0;
+              if(!empty($d_ak->lembar_saham) && !empty($d_ak->nilai_par)){
+                $nilai_akuisisi += ($d_ak->lembar_saham * $d_ak->nilai_par);
+              }
+              if(!empty($d_ak->kas_metode)){
+                $nilai_akuisisi += $d_ak->kas_metode;
+              }
+              if(!empty($d_ak->lembar_saham) && !empty($d_ak->nilai_par) && !empty($d_ak->nilai_pasar)){
+                $nilai_akuisisi += ($d_ak->lembar_saham * ($d_ak->nilai_pasar - $d_ak->nilai_par));
+              }
+              if($nilai_akuisisi != 0){
+                echo number_format($nilai_akuisisi);
+              } else{ echo "-";} 
+              ?>)</p> 
+            <p>Nilai Akuisi : 100%   (Rp.<?php 
+              $nilai_akuisisi2 = 0;
+              if(!empty($d_ak->kas_metode)){
+                $nilai_akuisisi2 += $d_ak->kas_metode;
+              }
+              if(!empty($d_ak->lembar_saham) && !empty($d_ak->nilai_par)){
+                $nilai_akuisisi2 += ($d_ak->lembar_saham * $d_ak->nilai_par);
+              }
+              if(!empty($d_ak->lembar_saham) && !empty($d_ak->nilai_pasar) && !empty($d_ak->nilai_par)){
+                $nilai_akuisisi2 += ($d_ak->lembar_saham * ($d_ak->nilai_pasar - $d_ak->nilai_par));
+              }
+              if($nilai_akuisisi2 != 0 && !empty($d_ak->persen_akuisisi)){
+                $nilai_akuisisi2 = $nilai_akuisisi2 /  $d_ak->persen_akuisisi * 100;
+              }
+              // if(!empty($d_ak->lembar_saham) && !empty($d_ak->nilai_par) && !empty($d_ak->nilai_pasar) && !empty($d_ak->kas_metode) && !empty($d_ak->persen_akuisisi)){ 
+              //   echo number_format(($d_ak->kas_metode+($d_ak->lembar_saham * $d_ak->nilai_par)+($d_ak->lembar_saham * ($d_ak->nilai_pasar - $d_ak->nilai_par))) /  $d_ak->persen_akuisisi * 100);
+
+              // } 
+              if($nilai_akuisisi2 != 0){
+                echo number_format($nilai_akuisisi2);
+              }
+              else{ echo "-";} ?>)</p>
+            <p>Nilai Buku Anak : 100%   (Rp.<?php 
+              $nilai_anak = 0;
+
+              if(!empty($nb_anak->saham_n1)){
+              $nilai_anak += $nb_anak->saham_n1;
+              }
+              if(!empty($nb_anak->agio_saham_n1)){
+              $nilai_anak += $nb_anak->agio_saham_n1;
+              }
+              if(!empty($nb_anak->laba_ditahan_n1)){
+              $nilai_anak += $nb_anak->laba_ditahan_n1;
+              }
+              // if(!empty($nb_anak->saham_n1) && !empty($nb_anak->agio_saham_n1) && !empty($nb_anak->laba_ditahan_n1)) { echo number_format($nb_anak->saham_n1 + $nb_anak->agio_saham_n1 + $nb_anak->laba_ditahan_n1);} else{ echo "-";} 
+              if($nilai_anak != 0) { echo number_format($nilai_anak);} else{ echo "-";} 
+              ?>)</p>
+            <p>Excess: 100%   (Rp.<?php 
+              $nilai_excess = 0;
+              $nilai_excess += ($nilai_akuisisi2 - $nilai_anak);
+              if($nilai_excess == 0){
+                echo "-";
+              } else{
+                echo number_format($nilai_excess);
+              }
+              // if(!empty($d_ak->lembar_saham) && !empty($d_ak->nilai_par) && !empty($d_ak->nilai_pasar) && !empty($d_ak->kas_metode) && !empty($d_ak->persen_akuisisi) && !empty($nb_anak->saham_n1) && !empty($nb_anak->agio_saham_n1) && !empty($nb_anak->laba_ditahan_n1)){ echo number_format((($d_ak->kas_metode+($d_ak->lembar_saham * $d_ak->nilai_par)+($d_ak->lembar_saham * ($d_ak->nilai_pasar - $d_ak->nilai_par))) /  $d_ak->persen_akuisisi * 100)               - ($nb_anak->saham_n1 + $nb_anak->agio_saham_n1 + $nb_anak->laba_ditahan_n1));} else{ echo "-";} ?>)</p>
           </div>
         </div>
         <!-- DataTables Example -->

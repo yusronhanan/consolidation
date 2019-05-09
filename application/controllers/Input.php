@@ -45,7 +45,14 @@ class Input extends CI_Controller {
                $this->form_validation->set_rules('nilai_par', 'Nilai Par/Lembar', 'required');
                $this->form_validation->set_rules('nilai_pasar', 'Nilai Pasar/Lembar', 'required');
                
+
                 if ($this->form_validation->run() == TRUE ) {
+               	$kas = $this->input->post('kas_metode');
+               	$beban_invest = $this->Show_model->GetData('', 'akuisisi')->beban_invest;
+               	$agio_saham = $this->Show_model->GetData('', 'akuisisi')->agio_saham;
+               	$kas_n1 = $this->Show_model->GetData(array('tipe_pt' => 'pt_induk','tipe_nilai'=>'nilai_buku'), 'neraca1')->kas_n1;
+               	if(($kas+$beban_invest+$agio_saham) <= $kas_n1){
+
                     if ($this->Show_model->editAkuisisi2() == TRUE) {
                         $this->session->set_flashdata('type_notif', 'success');
                         $this->session->set_flashdata('notif', 'Anda berhasil mengedit data');
@@ -57,10 +64,15 @@ class Input extends CI_Controller {
                         redirect('data_akuisisi');
 
                     }
+                }  else {
+
+                        $this->session->set_flashdata('type_notif', 'danger');
+                        $this->session->set_flashdata('notif', 'Maaf, Inputan idak boleh melebihi jumlah kas pada nilai buku di data neraca. Coba lagi !');
+                        redirect('data_akuisisi');
+                    }
                 } else {
                     $this->session->set_flashdata('type_notif', 'danger');
                 $this->session->set_flashdata('notif', 'Ada inputan kosong / kesalahan inputan');
-
                         redirect('data_akuisisi');
                   
                 }
@@ -68,8 +80,15 @@ class Input extends CI_Controller {
 		public function editAkuisisi3(){
 			$this->form_validation->set_rules('beban_invest', 'Beban Investasi', 'required');
                $this->form_validation->set_rules('agio_saham', 'Agio Saham', 'required');
-
+               	
                 if ($this->form_validation->run() == TRUE ) {
+                $beban_invest = $this->input->post('beban_invest');
+               	$agio_saham = $this->input->post('agio_saham');
+               	$kas = $this->Show_model->GetData('', 'akuisisi')->kas_metode;
+               	$kas_n1 = $this->Show_model->GetData(array('tipe_pt' => 'pt_induk','tipe_nilai'=>'nilai_buku'), 'neraca1')->kas_n1;
+               	
+                if(($kas+$beban_invest+$agio_saham) <= $kas_n1){
+
                     if ($this->Show_model->editAkuisisi3() == TRUE) {
                         $this->session->set_flashdata('type_notif', 'success');
                         $this->session->set_flashdata('notif', 'Anda berhasil mengedit data');
@@ -80,6 +99,13 @@ class Input extends CI_Controller {
                         $this->session->set_flashdata('notif', 'Maaf, anda gagal mengedit data. Coba lagi');
                         redirect('data_akuisisi');
 
+                    }
+                 
+                    }  else {
+
+                        $this->session->set_flashdata('type_notif', 'danger');
+                        $this->session->set_flashdata('notif', 'Maaf, Inputan idak boleh melebihi jumlah kas pada nilai buku di data neraca. Coba lagi !');
+                        redirect('data_akuisisi');
                     }
                 } else {
                     $this->session->set_flashdata('type_notif', 'danger');
