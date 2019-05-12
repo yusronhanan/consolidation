@@ -176,7 +176,7 @@
           <div class="card-body">
             <p>Kas : <?php if(!empty($d_ak->kas_metode)){ echo number_format($d_ak->kas_metode);}else{ echo "-";} ?></p> 
             <p>Saham : <?php if(!empty($d_ak->lembar_saham) && !empty($d_ak->nilai_par)){ echo number_format($d_ak->lembar_saham * $d_ak->nilai_par);}else{ echo "-";} ?></p>
-            <p>Agio Saham : <?php if(!empty($d_ak->lembar_saham) && !empty($d_ak->nilai_par) && !empty($d_ak->nilai_pasar)){ echo number_format($d_ak->lembar_saham * ($d_ak->nilai_pasar - $d_ak->nilai_par));}else{ echo "-";} ?></p>
+            <p>Agio Saham : <?php if(!empty($d_ak->lembar_saham) && !empty($d_ak->nilai_pasar)){ echo number_format($d_ak->lembar_saham * ($d_ak->nilai_pasar - $d_ak->nilai_par));}else{ echo "-";} ?></p>
             <p>Investasi pada Anak :  <?php 
             $invest_anak = 0;
             if(!empty($d_ak->kas_metode)){

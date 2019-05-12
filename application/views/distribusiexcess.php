@@ -26,7 +26,7 @@
               if(!empty($d_ak->kas_metode)){
                 $nilai_akuisisi += $d_ak->kas_metode;
               }
-              if(!empty($d_ak->lembar_saham) && !empty($d_ak->nilai_par) && !empty($d_ak->nilai_pasar)){
+              if(!empty($d_ak->lembar_saham)  && !empty($d_ak->nilai_pasar)){
                 $nilai_akuisisi += ($d_ak->lembar_saham * ($d_ak->nilai_pasar - $d_ak->nilai_par));
               }
               if($nilai_akuisisi != 0){
@@ -41,7 +41,7 @@
               if(!empty($d_ak->lembar_saham) && !empty($d_ak->nilai_par)){
                 $nilai_akuisisi2 += ($d_ak->lembar_saham * $d_ak->nilai_par);
               }
-              if(!empty($d_ak->lembar_saham) && !empty($d_ak->nilai_pasar) && !empty($d_ak->nilai_par)){
+              if(!empty($d_ak->lembar_saham) && !empty($d_ak->nilai_pasar)){
                 $nilai_akuisisi2 += ($d_ak->lembar_saham * ($d_ak->nilai_pasar - $d_ak->nilai_par));
               }
               if($nilai_akuisisi2 != 0 && !empty($d_ak->persen_akuisisi)){
