@@ -34,7 +34,7 @@
                     <td>Saham</td>
                     <td><?php
                     $kolom1 = $nb_anak->saham_n1;
-                    echo number_format($kolom1);
+                    echo number_format(abs($kolom1));
                     $tot_d += $kolom1;
                      ?></td>
                      <td>-</td>
@@ -43,7 +43,7 @@
                     <td>Agio Saham</td>
                     <td><?php
                     $kolom1 = $nb_anak->agio_saham_n1;
-                    echo number_format($kolom1);
+                    echo number_format(abs($kolom1));
                     $tot_d += $kolom1;
                      ?></td>
                      <td>-</td>
@@ -52,7 +52,7 @@
                     <td>Laba Ditahan</td>
                     <td><?php
                     $kolom1 = $nb_anak->laba_ditahan_n1;
-                    echo number_format($kolom1);
+                    echo number_format(abs($kolom1));
                     $tot_d += $kolom1;
                      ?></td>
                     <td>-</td>
@@ -89,10 +89,10 @@
                       // $excess = (($d_ak->kas_metode+($d_ak->lembar_saham * $d_ak->nilai_par)+($d_ak->lembar_saham * ($d_ak->nilai_pasar - $d_ak->nilai_par))) /  $d_ak->persen_akuisisi * 100) - ($nb_anak->saham_n1 + $nb_anak->agio_saham_n1 + $nb_anak->laba_ditahan_n1);
                       // if($excess == 0){
                       if($excess > 0){
-                        echo '<td>'.number_format($excess).'</td> <td>-</td>';
+                        echo '<td>'.number_format(abs($excess)).'</td> <td>-</td>';
                         $tot_d += $excess;
                       } else{
-                        echo ' <td>-</td><td>'.number_format($excess).'</td>';
+                        echo ' <td>-</td><td>'.number_format(abs($excess)).'</td>';
                         $tot_k += $excess;
                       }
                       // } else{
@@ -122,7 +122,7 @@
 
               
             if($invest_anak != 0){
-              echo number_format($invest_anak);
+              echo number_format(abs($invest_anak));
             }else{ echo "-";} 
                     $tot_k += $invest_anak;
                     
@@ -138,7 +138,7 @@
                       $tot_k += $kolom2;
                       if($kolom2 != 0){
 
-                      echo number_format($kolom2);
+                      echo number_format(abs($kolom2));
 
                       } else {
                       echo "-"; 
@@ -160,7 +160,7 @@
 
                         
                       } else{
-                        echo '<td>'.number_format($kurang).'</td><td>-</td>';
+                        echo '<td>'.number_format(abs($kurang)).'</td><td>-</td>';
                         $kolom1 = $kurang;
                         $kolom2 = 0.0;
                       
@@ -183,7 +183,7 @@
                        
                       $tot_k+= -1*$kolom2; 
                       } else{
-                        echo '<td>'.number_format($kurang).'</td><td>-</td>';
+                        echo '<td>'.number_format(abs($kurang)).'</td><td>-</td>';
                         $kolom1 = $kurang;
                         $kolom2 = 0.0;
                       $tot_d += $kolom1;
@@ -206,7 +206,7 @@
                        
                       $tot_k+=-1*$kolom2;
                       } else{
-                        echo '<td>'.number_format($kurang).'</td><td>-</td>';
+                        echo '<td>'.number_format(abs($kurang)).'</td><td>-</td>';
                         $kolom1 = $kurang;
                         $kolom2 = 0.0;
                       $tot_d += $kolom1; 
@@ -221,14 +221,14 @@
                     <?php if(!empty($np_anak->bangunan_n1) && !empty($nb_anak->bangunan_n1)){ 
                       $kurang = $np_anak->bangunan_n1 - $nb_anak->bangunan_n1;
                       if($kurang < 0){
-                        echo '<td>-</td><td>'.number_format((-1*$kurang)).'</td>';
+                        echo '<td>-</td><td>'.number_format(abs($kurang)).'</td>';
                         $kolom1 = 0.0;
                         $kolom2 = $kurang;
                        
                       $tot_k += -1* $kolom2;
 
                       } else{
-                        echo '<td>'.number_format($kurang).'</td><td>-</td>';
+                        echo '<td>'.number_format(abs($kurang)).'</td><td>-</td>';
                         $kolom1 = $kurang;
                         $kolom2 = 0.0;
 
@@ -251,7 +251,7 @@
                       $tot_k += -1* $kolom2;
                                                
                       } else{
-                        echo '<td>'.number_format($kurang).'</td><td>-</td>';
+                        echo '<td>'.number_format(abs($kurang)).'</td><td>-</td>';
                         $kolom1 = $kurang;
                         $kolom2 = 0.0;
                         $tot_d += $kolom1;
@@ -268,10 +268,10 @@
             $conclusion = ((($d_ak->kas_metode+($d_ak->lembar_saham * $d_ak->nilai_par)+($d_ak->lembar_saham * ($d_ak->nilai_pasar - $d_ak->nilai_par))) /  $d_ak->persen_akuisisi * 100) - ($nb_anak->saham_n1 + $nb_anak->agio_saham_n1 + $nb_anak->laba_ditahan_n1)) - $total_pengurangan;
             
           if($conclusion > 0){
-            echo '<td>Goodwill</td> <td>'.number_format($conclusion).'</td> <td>-</td>'; 
+            echo '<td>Goodwill</td> <td>'.number_format(abs($conclusion)).'</td> <td>-</td>'; 
             $tot_d += $conclusion;
           } else{
-            echo '<td>Gain From Bargain Purchase</td><td>-</td><td>'.number_format($conclusion).'</td> ';
+            echo '<td>Gain From Bargain Purchase</td><td>-</td><td>'.number_format(abs($conclusion)).'</td> ';
             $tot_k += $conclusion;
             
           }
@@ -309,10 +309,10 @@
               $excess = $nilai_akuisisi2 - $nilai_anak;
                       // if($excess == 0){
                       if($excess < 0){
-                        echo '<td>'.number_format($excess).'</td> <td>-</td>';
+                        echo '<td>'.number_format(abs($excess)).'</td> <td>-</td>';
                         $tot_d += $excess;
                       } else{
-                        echo ' <td>-</td><td>'.number_format($excess).'</td>';
+                        echo ' <td>-</td><td>'.number_format(abs($excess)).'</td>';
                         $tot_k += $excess;
 
                       }
@@ -338,7 +338,7 @@
                       $tot_d += -1 * $kolom2;
                       $tot_k += $kolom1;
                       } else{
-                        echo '<td>-</td><td>'.number_format($kurang).'</td>';
+                        echo '<td>-</td><td>'.number_format(abs($kurang)).'</td>';
                         $kolom1 = $kurang;
                         $kolom2 = 0.0;
                     $tot_d +=  $kolom2;
@@ -362,7 +362,7 @@
                       $tot_k += $kolom1;                  
 
                       } else{
-                        echo '<td>-</td><td>'.number_format($kurang).'</td>';
+                        echo '<td>-</td><td>'.number_format(abs($kurang)).'</td>';
                         $kolom1 = $kurang;
                         $kolom2 = 0.0;
 
@@ -378,8 +378,8 @@
                   </tr>
                   <tr>
                     <td>Total</td>
-                    <td><?php echo number_format($tot_d) ?></td>
-                    <td><?php echo number_format($tot_k) ?></td>
+                    <td><?php echo number_format(abs($tot_d)) ?></td>
+                    <td><?php echo number_format(abs($tot_k)) ?></td>
                   
                   </tr>
                 </tbody>
@@ -403,7 +403,7 @@
                     <td>Beban Investasi</td>
                     <td><?php if(!empty($d_ak->beban_invest)){ 
                     if($d_ak->beban_invest > 0){
-                      echo number_format($d_ak->beban_invest);
+                      echo number_format(abs($d_ak->beban_invest));
                     } else{
                       echo '-';
                     }
@@ -416,7 +416,7 @@
                     <td>Agio Saham</td>
                     <td><?php if(!empty($d_ak->agio_saham)){ 
                     if($d_ak->agio_saham > 0){
-                      echo number_format($d_ak->agio_saham);
+                      echo number_format(abs($d_ak->agio_saham));
                     } else{
                       echo '-';
                     }
@@ -432,7 +432,7 @@
                     
                     <td><?php if(!empty($d_ak->beban_invest) && !empty($d_ak->agio_saham)){ 
                     if($d_ak->beban_invest > 0 && $d_ak->agio_saham > 0){
-                      echo number_format($d_ak->beban_invest + $d_ak->agio_saham);
+                      echo number_format(abs($d_ak->beban_invest + $d_ak->agio_saham));
                     } else{
                       echo '-';
                     }
@@ -488,17 +488,17 @@
                     $kolom4 = 0.0;
                     $kolom1 = 0;
                       $kolom1 = $nb_induk->kas_n1 - $d_ak->kas_metode - $d_ak->beban_invest - $d_ak->agio_saham;
-                      echo number_format($kolom1);
+                      echo number_format(abs($kolom1));
                       $tot_induk += $kolom1;
                      ?></td>
                     <td><?php if(!empty($nb_anak->kas_n1)){ 
                       $kolom2 = $nb_anak->kas_n1;
-                      echo number_format($kolom2);
+                      echo number_format(abs($kolom2));
                       $tot_anak += $kolom2;
                     } ?></td>
                     <td>-</td>
                     <td>-</td>
-                    <td><?php echo number_format($kolom1 + $kolom2); 
+                    <td><?php echo number_format(abs($kolom1 + $kolom2)); 
                     $tot_ns += $kolom1 + $kolom2; ?></td>
                   </tr>
 
@@ -507,12 +507,12 @@
                     <td><?php 
                     if(!empty($nb_induk->piutang_n1)) {
                       $kolom1 = $nb_induk->piutang_n1;
-                      echo number_format($kolom1);
+                      echo number_format(abs($kolom1));
                       $tot_induk += $kolom1;
                     } ?></td>
                     <td><?php if(!empty($nb_anak->piutang_n1)) {
                       $kolom2 = $nb_anak->piutang_n1;
-                      echo number_format($kolom2);
+                      echo number_format(abs($kolom2));
                       $tot_anak += $kolom2;
                     } ?></td>
                     <?php if(!empty($np_anak->piutang_n1) && !empty($nb_anak->piutang_n1)){ 
@@ -524,7 +524,7 @@
                         $kolom4 = $kurang;
                         
                       } else{
-                        echo '<td>'.number_format($kurang).'</td><td>-</td>';
+                        echo '<td>'.number_format(abs($kurang)).'</td><td>-</td>';
                         $kolom3 = $kurang;
                         $tot_kol3+=$kolom3;
                         $kolom4 = 0.0;
@@ -532,7 +532,7 @@
                       $tot_kol4 += $kolom4;
                       
                     } ?>
-                    <td><?php echo number_format($kolom1 + $kolom2 + $kolom3 + $kolom4);
+                    <td><?php echo number_format(abs($kolom1 + $kolom2 + $kolom3 + $kolom4));
                     $tot_ns += $kolom1+$kolom2+$kolom3+$kolom4; ?></td>
                   </tr>
                   <tr>
@@ -540,12 +540,12 @@
                     <td><?php 
                     if(!empty($nb_induk->persediaan_n1)) {
                       $kolom1 = $nb_induk->persediaan_n1;
-                      echo number_format($kolom1);
+                      echo number_format(abs($kolom1));
                       $tot_induk += $kolom1;
                     } ?></td>
                     <td><?php if(!empty($nb_anak->persediaan_n1)) {
                       $kolom2 = $nb_anak->persediaan_n1;
-                      echo number_format($kolom2);
+                      echo number_format(abs($kolom2));
                       $tot_anak += $kolom2;
                     } ?></td>
                     <?php if(!empty($np_anak->persediaan_n1) && !empty($nb_anak->persediaan_n1)){ 
@@ -557,7 +557,7 @@
                         $kolom4 = $kurang;
                         
                       } else{
-                        echo '<td>'.number_format($kurang).'</td><td>-</td>';
+                        echo '<td>'.number_format(abs($kurang)).'</td><td>-</td>';
                         $kolom3 = $kurang;
                         $tot_kol3+=$kolom3;
                         $kolom4 = 0.0;
@@ -565,7 +565,7 @@
                       $tot_kol4 += $kolom4;
                       
                     } ?>
-                    <td><?php echo number_format($kolom1 + $kolom2 + $kolom3 + $kolom4);
+                    <td><?php echo number_format(abs($kolom1 + $kolom2 + $kolom3 + $kolom4));
                     $tot_ns += $kolom1+$kolom2+$kolom3+$kolom4; ?></td>
                   </tr>
                   <tr>
@@ -573,12 +573,12 @@
                     <td><?php 
                     if(!empty($nb_induk->perlengkapan_n1)) {
                       $kolom1 = $nb_induk->perlengkapan_n1;
-                      echo number_format($kolom1);
+                      echo number_format(abs($kolom1));
                       $tot_induk += $kolom1;
                     } ?></td>
                     <td><?php if(!empty($nb_anak->perlengkapan_n1)) {
                       $kolom2 = $nb_anak->perlengkapan_n1;
-                      echo number_format($kolom2);
+                      echo number_format(abs($kolom2));
                       $tot_anak += $kolom2;
                     } ?></td>
                     <?php if(!empty($np_anak->perlengkapan_n1) && !empty($nb_anak->perlengkapan_n1)){ 
@@ -591,14 +591,14 @@
                        
                         $tot_kol4 += -1* $kolom4; 
                       } else{
-                        echo '<td>'.number_format($kurang).'</td><td>-</td>';
+                        echo '<td>'.number_format(abs($kurang)).'</td><td>-</td>';
                         $kolom3 = $kurang;
                         $tot_kol3+=$kolom3;
                         $kolom4 = 0.0;
                       }
                       
                     } ?>
-                    <td><?php echo number_format($kolom1 + $kolom2 + $kolom3 + $kolom4);
+                    <td><?php echo number_format(abs($kolom1 + $kolom2 + $kolom3 + $kolom4));
                     $tot_ns += $kolom1+$kolom2+$kolom3+$kolom4; ?></td>
                   </tr>
                   <tr>
@@ -606,12 +606,12 @@
                     <td><?php 
                     if(!empty($nb_induk->bangunan_n1)) {
                       $kolom1 = $nb_induk->bangunan_n1;
-                      echo number_format($kolom1);
+                      echo number_format(abs($kolom1));
                       $tot_induk += $kolom1;
                     } ?></td>
                     <td><?php if(!empty($nb_anak->bangunan_n1)) {
                       $kolom2 = $nb_anak->bangunan_n1;
-                      echo number_format($kolom2);
+                      echo number_format(abs($kolom2));
                       $tot_anak += $kolom2;
                     } ?></td>
                     <?php if(!empty($np_anak->bangunan_n1) && !empty($nb_anak->bangunan_n1)){ 
@@ -623,7 +623,7 @@
                         $kolom4 = $kurang;
                         
                       } else{
-                        echo '<td>'.number_format($kurang).'</td><td>-</td>';
+                        echo '<td>'.number_format(abs($kurang)).'</td><td>-</td>';
                         $kolom3 = $kurang;
                         $tot_kol3+=$kolom3;
                         $kolom4 = 0.0;
@@ -631,7 +631,7 @@
                       $tot_kol4 += $kolom4;
                       
                     } ?>
-                    <td><?php echo number_format($kolom1 + $kolom2 + $kolom3 + $kolom4);
+                    <td><?php echo number_format(abs($kolom1 + $kolom2 + $kolom3 + $kolom4));
                     $tot_ns += $kolom1+$kolom2+$kolom3+$kolom4; ?></td>
                   </tr>
                   <tr>
@@ -639,12 +639,12 @@
                     <td><?php 
                     if(!empty($nb_induk->tanah_n1)) {
                       $kolom1 = $nb_induk->tanah_n1;
-                      echo number_format($kolom1);
+                      echo number_format(abs($kolom1));
                       $tot_induk += $kolom1;
                     } ?></td>
                     <td><?php if(!empty($nb_anak->tanah_n1)) {
                       $kolom2 = $nb_anak->tanah_n1;
-                      echo number_format($kolom2);
+                      echo number_format(abs($kolom2));
                       $tot_anak += $kolom2;
                     } ?></td>
                     <?php if(!empty($np_anak->tanah_n1) && !empty($nb_anak->tanah_n1)){ 
@@ -656,7 +656,7 @@
                         $kolom4 = $kurang;
                         
                       } else{
-                        echo '<td>'.number_format($kurang).'</td><td>-</td>';
+                        echo '<td>'.number_format(abs($kurang)).'</td><td>-</td>';
                         $kolom3 = $kurang;
                         $tot_kol3+=$kolom3;
                         $kolom4 = 0.0;
@@ -664,7 +664,7 @@
                       $tot_kol4 += $kolom4;
                       
                     } ?>
-                    <td><?php echo number_format($kolom1 + $kolom2 + $kolom3 + $kolom4);
+                    <td><?php echo number_format(abs($kolom1 + $kolom2 + $kolom3 + $kolom4));
                     $tot_ns += $kolom1+$kolom2+$kolom3+$kolom4; ?></td>
                   </tr>
                   <tr>
@@ -683,7 +683,7 @@
 
               $tot_induk += $invest_anak;
             if($invest_anak != 0){
-              echo number_format($invest_anak);
+              echo number_format(abs($invest_anak));
             }else{ echo "-";} 
                     ?></td>
                     <td>-</td>
@@ -702,7 +702,7 @@
 
               $tot_kol4 += $invest_anak;
             if($invest_anak != 0){
-              echo number_format($invest_anak);
+              echo number_format(abs($invest_anak));
             }else{ echo "-";}  
 
                     ?></td>
@@ -746,15 +746,15 @@
               }
               $excess = $nilai_akuisisi2 - $nilai_anak;
                       if($excess > 0){
-                        echo number_format($excess);
+                        echo number_format(abs($excess));
                         $tot_kol3 += $excess;
                       } else{
                         echo "-";
                       }
                      ?></td>
                     <td><?php 
-                    if($excess > 0){
-                        echo number_format($excess);
+                    if($excess < 0){
+                        echo number_format(abs($excess));
                         $tot_kol4 += $excess;
 
                       } else{
@@ -781,7 +781,7 @@
                     <td>-</td>
                     <td> <?php 
           if($conclusion > 0){
-            echo number_format($conclusion);
+            echo number_format(abs($conclusion));
           } else{
             echo '-';
           }
@@ -789,7 +789,7 @@
                     <td>-</td>
                     <td> <?php 
           if($conclusion > 0){
-            echo number_format($conclusion);
+            echo number_format(abs($conclusion));
             
             $tot_ns += $conclusion;
           } else{
@@ -800,11 +800,11 @@
                   </tr>
                   <tr style="font-weight: bold">
                     <td>Total Aset</td>
-                    <td><?php echo number_format($tot_induk) ?></td>
-                    <td><?php echo number_format($tot_anak) ?></td>
+                    <td><?php echo number_format(abs($tot_induk)) ?></td>
+                    <td><?php echo number_format(abs($tot_anak)) ?></td>
                     <td>-</td>
                     <td>-</td>
-                    <td><?php echo number_format($tot_ns) ?></td>
+                    <td><?php echo number_format(abs($tot_ns)) ?></td>
 
                   </tr>
 <tr>
@@ -815,25 +815,25 @@
                     $tot_ns2 = 0.0;                
                     if(!empty($nb_induk->hutang_dagang_n1)) {
                       $kolom1 = $nb_induk->hutang_dagang_n1;
-                      echo number_format($kolom1);
+                      echo number_format(abs($kolom1));
                       $tot_induk2 += $kolom1;
                     }
 
                      ?></td>
                     <td><?php if(!empty($nb_anak->hutang_dagang_n1)) {
                       $kolom2 = $nb_anak->hutang_dagang_n1;
-                      echo number_format($kolom2);
+                      echo number_format(abs($kolom2));
                       $tot_anak2 += $kolom2;
                     } ?></td>
                     <?php if(!empty($np_anak->hutang_dagang_n1) && !empty($nb_anak->hutang_dagang_n1)){ 
                       $kurang = $np_anak->hutang_dagang_n1 - $nb_anak->hutang_dagang_n1;
                       if($kurang > 0){
-                        echo '<td>-</td><td>'.number_format($kurang).'</td>';
+                        echo '<td>-</td><td>'.number_format(abs($kurang)).'</td>';
                         $kolom3 = 0.0;
                         $kolom4 = $kurang;
                         
                       } else{
-                        echo '<td>'.number_format((-1*$kurang)).'</td><td>-</td>';
+                        echo '<td>'.number_format(abs($kurang)).'</td><td>-</td>';
                         $kolom3 = $kurang;
                         $kolom4 = 0.0;
                       }
@@ -841,7 +841,7 @@
                       $tot_kol3+=$kolom3;
                       $tot_kol4 += $kolom4;
                     } ?>
-                    <td><?php echo number_format($kolom1 + $kolom2 + $kolom3 + $kolom4);
+                    <td><?php echo number_format(abs($kolom1 + $kolom2 + $kolom3 + $kolom4));
                     $tot_ns2 += $kolom1+$kolom2+$kolom3+$kolom4; ?></td>
                   </tr>
                 <tr>
@@ -849,18 +849,18 @@
                     <td><?php                 
                     if(!empty($nb_induk->hutang_obligasi_n1)) {
                       $kolom1 = $nb_induk->hutang_obligasi_n1;
-                      echo number_format($kolom1);
+                      echo number_format(abs($kolom1));
                       $tot_induk2 += $kolom1;
                     } ?></td>
                     <td><?php if(!empty($nb_anak->hutang_obligasi_n1)) {
                       $kolom2 = $nb_anak->hutang_obligasi_n1;
-                      echo number_format($kolom2);
+                      echo number_format(abs($kolom2));
                       $tot_anak2 += $kolom2;
                     } ?></td>
                     <?php if(!empty($np_anak->hutang_obligasi_n1) && !empty($nb_anak->hutang_obligasi_n1)){ 
                       $kurang = $np_anak->hutang_obligasi_n1 - $nb_anak->hutang_obligasi_n1;
                       if($kurang > 0){
-                        echo '<td>-</td><td>'.number_format($kurang).'</td>';
+                        echo '<td>-</td><td>'.number_format(abs($kurang)).'</td>';
                         $kolom3 = 0.0;
                         $kolom4 = $kurang;
                         
@@ -874,31 +874,31 @@
                       $tot_kol3+=$kolom3;
                       
                     } ?>
-                    <td><?php echo number_format($kolom1 + $kolom2 + $kolom3 + $kolom4);
+                    <td><?php echo number_format(abs($kolom1 + $kolom2 + $kolom3 + $kolom4));
                     $tot_ns2 += $kolom1+$kolom2+$kolom3+$kolom4; ?></td>
                   </tr>
                   <tr>
                     <td>Saham</td>
                     <td><?php
                     $kolom1 = $nb_induk->saham_n1 + ( $d_ak->lembar_saham * $d_ak->nilai_par);
-                    echo number_format($kolom1);
+                    echo number_format(abs($kolom1));
                     $tot_induk2 += $kolom1;
                      ?></td>
                     <td><?php
                     $kolom2 = $nb_anak->saham_n1;
-                    echo number_format($kolom2);
+                    echo number_format(abs($kolom2));
                     $tot_anak2 += $kolom2;
                      ?></td>
                      <td><?php
                     $kolom3 = $nb_anak->saham_n1;
-                    echo number_format($kolom3);
+                    echo number_format(abs($kolom3));
                     $tot_kol3 += $kolom3;
                      ?></td>
                     <td>-</td>
                     <td>
                       <?php
                       $tot_ns2 += $kolom1 + $kolom2 - $kolom3;
-                      echo number_format($kolom1 + $kolom2 - $kolom3);
+                      echo number_format(abs($kolom1 + $kolom2 - $kolom3));
                        ?>
                     </td>
 
@@ -907,24 +907,24 @@
                     <td>Agio Saham</td>
                     <td><?php
                     $kolom1 = $nb_induk->agio_saham_n1 + ($d_ak->lembar_saham * ($d_ak->nilai_pasar - $d_ak->nilai_par)) - $d_ak->agio_saham;
-                    echo number_format($kolom1);
+                    echo number_format(abs($kolom1));
                     $tot_induk2 += $kolom1;
                      ?></td>
                     <td><?php
                     $kolom2 = $nb_anak->agio_saham_n1;
-                    echo number_format($kolom2);
+                    echo number_format(abs($kolom2));
                     $tot_anak2 += $kolom2;
                      ?></td>
                      <td><?php
                     $kolom3 = $nb_anak->agio_saham_n1;
-                    echo number_format($kolom3);
+                    echo number_format(abs($kolom3));
                     $tot_kol3 += $kolom3;
                      ?></td>
                     <td>-</td>
                     <td>
                       <?php
                       $tot_ns2 += $kolom1 + $kolom2 - $kolom3;
-                      echo number_format($kolom1 + $kolom2 - $kolom3);
+                      echo number_format(abs($kolom1 + $kolom2 - $kolom3));
                        ?>
                     </td>
 
@@ -933,24 +933,24 @@
                     <td>Laba Ditahan</td>
                     <td><?php
                     $kolom1 = $nb_induk->laba_ditahan_n1 - $d_ak->beban_invest;
-                    echo number_format($kolom1);
+                    echo number_format(abs($kolom1));
                     $tot_induk2 += $kolom1;
                      ?></td>
                     <td><?php
                     $kolom2 = $nb_anak->laba_ditahan_n1;
-                    echo number_format($kolom2);
+                    echo number_format(abs($kolom2));
                     $tot_anak2 += $kolom2;
                      ?></td>
                      <td><?php
                     $kolom3 = $nb_anak->laba_ditahan_n1;
-                    echo number_format($kolom3);
+                    echo number_format(abs($kolom3));
                     $tot_kol3 += $kolom3;
                      ?></td>
                     <td>
                       <?php 
                       if($conclusion < 0){
                         $kolom4 = $conclusion;
-                      echo number_format($kolom4);
+                      echo number_format(abs($kolom4));
 
                       } else{
                         $kolom4 = 0;
@@ -962,7 +962,7 @@
                     <td>
                       <?php
                       $tot_ns2 += $kolom1 + $kolom2 - $kolom3 + $kolom4;
-                      echo number_format($kolom1 + $kolom2 - $kolom3 + $kolom4);
+                      echo number_format(abs($kolom1 + $kolom2 - $kolom3 + $kolom4));
                        ?>
                     </td>
 
@@ -979,8 +979,8 @@
                       if($kolom4 == 0){
                         echo '<td>-</td><td>-</td>';
                       } else{
-                      echo '<td>'.number_format($kolom4).'</td>';
-                      echo '<td>'.number_format($kolom4).'</td>';
+                      echo '<td>'.number_format(abs($kolom4)).'</td>';
+                      echo '<td>'.number_format(abs($kolom4)).'</td>';
                       }
                       $tot_kol4 += $kolom4;
                       $tot_ns2 += $kolom4;
@@ -989,12 +989,12 @@
                   </tr>
                   <tr style="font-weight: bold">
                     <td>Total Hutang dan Ekuitas</td>
-                    <td><?php echo number_format($tot_induk2) ?></td>
-                    <td><?php echo number_format($tot_anak2) ?></td>
-                    <td><?php echo number_format($tot_kol3) ?></td>
-                    <td><?php echo number_format($tot_kol4) ?></td>
+                    <td><?php echo number_format(abs($tot_induk2)) ?></td>
+                    <td><?php echo number_format(abs($tot_anak2)) ?></td>
+                    <td><?php echo number_format(abs($tot_kol3)) ?></td>
+                    <td><?php echo number_format(abs($tot_kol4)) ?></td>
                     
-                    <td><?php echo number_format($tot_ns2) ?></td>
+                    <td><?php echo number_format(abs($tot_ns2)) ?></td>
 
                   </tr>
                 </tbody>

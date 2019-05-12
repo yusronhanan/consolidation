@@ -15,10 +15,10 @@
             <i class="fas fa-table"></i>
             Data Induk</div>
           <div class="card-body">
-            <p>Induk : <?php if(!empty($d_ak->pt_induk)){ echo $d_ak->pt_induk;}else{ echo "-";} ?></p> 
-            <p>Anak : <?php if(!empty($d_ak->pt_anak)){ echo $d_ak->pt_anak;}else{ echo "-";} ?></p>
-            <p>Tanggal Akuisisi : <?php if(!empty($d_ak->tgl_akuisisi)){ echo $d_ak->tgl_akuisisi;}else{ echo "-";} ?></p>
-            <p>Persentase Akuisisi (% ): <?php if(!empty($d_ak->persen_akuisisi)){ echo $d_ak->persen_akuisisi.'%';}else{ echo "-";} ?> </p>
+            <p>Induk : <?php if(!empty($d_ak->pt_induk)){ echo abs($d_ak->pt_induk);}else{ echo "-";} ?></p> 
+            <p>Anak : <?php if(!empty($d_ak->pt_anak)){ echo abs($d_ak->pt_anak);}else{ echo "-";} ?></p>
+            <p>Tanggal Akuisisi : <?php if(!empty($d_ak->tgl_akuisisi)){ echo abs($d_ak->tgl_akuisisi);}else{ echo "-";} ?></p>
+            <p>Persentase Akuisisi (% ): <?php if(!empty($d_ak->persen_akuisisi)){ echo abs($d_ak->persen_akuisisi).'%';}else{ echo "-";} ?> </p>
             
             <!-- Trigger the modal with a button -->
   <button type="button" class="btn btn-info btn-xs" data-toggle="modal" data-target="#editAkuisisi1">Edit</button>
@@ -98,10 +98,10 @@
                 
                 <tbody>
                   <tr>
-                    <td><?php if(!empty($d_ak->kas_metode)){ echo number_format($d_ak->kas_metode);}else{ echo "-";} ?></td>
-                    <td><?php if(!empty($d_ak->lembar_saham)){ echo number_format($d_ak->lembar_saham);}else{ echo "-";} ?></td>
-                    <td><?php if(!empty($d_ak->nilai_par)){ echo number_format($d_ak->nilai_par);}else{ echo "-";} ?></td>
-                    <td><?php if(!empty($d_ak->nilai_pasar)){ echo number_format($d_ak->nilai_pasar);}else{ echo "-";} ?></td>
+                    <td><?php if(!empty($d_ak->kas_metode)){ echo number_format(abs($d_ak->kas_metode));}else{ echo "-";} ?></td>
+                    <td><?php if(!empty($d_ak->lembar_saham)){ echo number_format(abs($d_ak->lembar_saham));}else{ echo "-";} ?></td>
+                    <td><?php if(!empty($d_ak->nilai_par)){ echo number_format(abs($d_ak->nilai_par));}else{ echo "-";} ?></td>
+                    <td><?php if(!empty($d_ak->nilai_pasar)){ echo number_format(abs($d_ak->nilai_pasar));}else{ echo "-";} ?></td>
                     
                   </tr>
                 </tbody>
@@ -174,9 +174,9 @@
             <i class="fas fa-table"></i>
             Nilai Akuisisi</div>
           <div class="card-body">
-            <p>Kas : <?php if(!empty($d_ak->kas_metode)){ echo number_format($d_ak->kas_metode);}else{ echo "-";} ?></p> 
-            <p>Saham : <?php if(!empty($d_ak->lembar_saham) && !empty($d_ak->nilai_par)){ echo number_format($d_ak->lembar_saham * $d_ak->nilai_par);}else{ echo "-";} ?></p>
-            <p>Agio Saham : <?php if(!empty($d_ak->lembar_saham)){ echo number_format($d_ak->lembar_saham * ($d_ak->nilai_pasar - $d_ak->nilai_par));}else{ echo "-";} ?></p>
+            <p>Kas : <?php if(!empty($d_ak->kas_metode)){ echo number_format(abs($d_ak->kas_metode));}else{ echo "-";} ?></p> 
+            <p>Saham : <?php if(!empty($d_ak->lembar_saham) && !empty($d_ak->nilai_par)){ echo number_format(abs($d_ak->lembar_saham * $d_ak->nilai_par));}else{ echo "-";} ?></p>
+            <p>Agio Saham : <?php if(!empty($d_ak->lembar_saham)){ echo number_format(abs($d_ak->lembar_saham * ($d_ak->nilai_pasar - $d_ak->nilai_par)));}else{ echo "-";} ?></p>
             <p>Investasi pada Anak :  <?php 
             $invest_anak = 0;
             if(!empty($d_ak->kas_metode)){
@@ -191,7 +191,7 @@
 
               
             if($invest_anak != 0){
-              echo number_format($invest_anak);
+              echo number_format(abs($invest_anak));
             }else{ echo "-";} ?></p>
           </div>
         </div>
@@ -202,8 +202,8 @@
             Beban Biaya</div>
           <div class="card-body">
             <p>Biaya Akuisisi yang dibayar Tunai dibebankan ke : </p> 
-            <p>Beban Investasi : <?php if(!empty($d_ak->beban_invest)){ echo number_format($d_ak->beban_invest);}else{ echo "-";} ?></p>
-            <p>Agio Saham : <?php if(!empty($d_ak->agio_saham)){ echo number_format($d_ak->agio_saham);}else{ echo "-";} ?> </p>
+            <p>Beban Investasi : <?php if(!empty($d_ak->beban_invest)){ echo number_format(abs($d_ak->beban_invest));}else{ echo "-";} ?></p>
+            <p>Agio Saham : <?php if(!empty($d_ak->agio_saham)){ echo number_format(abs($d_ak->agio_saham));}else{ echo "-";} ?> </p>
           
             <!-- Trigger the modal with a button -->
   <button type="button" class="btn btn-info btn-xs" data-toggle="modal" data-target="#editAkuisisi3">Edit</button>
