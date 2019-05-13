@@ -744,8 +744,9 @@
               if(!empty($nb_anak->laba_ditahan_n1)){
               $nilai_anak += $nb_anak->laba_ditahan_n1;
               }
-              $excess = $nilai_akuisisi2 - $nilai_anak;
-                      if($excess > 0){
+              $excess = abs($nilai_akuisisi2 - $nilai_anak);
+                    // if($excess < 0){
+                    if($excess != 0){
                         echo number_format(abs($excess));
                         $tot_kol3 += $excess;
                       } else{
@@ -753,7 +754,9 @@
                       }
                      ?></td>
                     <td><?php 
-                    if($excess < 0){
+                    // if($excess < 0){
+                    if($excess != 0){
+
                         echo number_format(abs($excess));
                         $tot_kol4 += $excess;
 
@@ -948,14 +951,18 @@
                      ?></td>
                     <td>
                       <?php 
-                      if($conclusion < 0){
-                        $kolom4 = $conclusion;
+                      // if($conclusion < 0){
+                      if($conclusion != 0){
+
+                        $kolom4 = abs($conclusion);
                       echo number_format(abs($kolom4));
 
                       } else{
                         $kolom4 = 0;
                         echo "-";
                       }
+                    $tot_kol4 += $kolom4;
+
                        ?>
                       
                     </td>
